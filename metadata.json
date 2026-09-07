@@ -1,0 +1,6 @@
+{
+  "name": "Dream Squat - Squat Dental Practice Portal",
+  "description": "All-in-one roadmap, AI location finder, vetted suppliers, and tools for dentists opening squat dental practices in the UK.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
