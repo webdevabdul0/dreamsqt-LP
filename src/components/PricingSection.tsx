@@ -1,14 +1,37 @@
-import React, { useState } from 'react';
-import { Check, ArrowRight } from 'lucide-react';
+import React from 'react';
+import { GradientPill } from './GradientPill';
 
 interface PricingSectionProps {
   onJoinClick: () => void;
 }
 
-export const PricingSection: React.FC<PricingSectionProps> = ({ onJoinClick }) => {
-  const [locationsCount, setLocationsCount] = useState(12);
-  const [suppliersCount, setSuppliersCount] = useState(8);
+const CheckIcon = ({ idx }: { idx: number }) => (
+  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none" style={{ flexShrink: 0 }}>
+    <g clipPath={`url(#pc${idx})`}>
+      <path d="M7.99999 14.6668C11.6819 14.6668 14.6667 11.682 14.6667 8.00016C14.6667 4.31826 11.6819 1.3335 7.99999 1.3335C4.31809 1.3335 1.33333 4.31826 1.33333 8.00016C1.33333 11.682 4.31809 14.6668 7.99999 14.6668Z" fill="#E3AA33"/>
+      <path d="M4.99999 8.00016L6.99999 10.0002L11 6.00016M14.6667 8.00016C14.6667 11.682 11.6819 14.6668 7.99999 14.6668C4.31809 14.6668 1.33333 11.682 1.33333 8.00016C1.33333 4.31826 4.31809 1.3335 7.99999 1.3335C11.6819 1.3335 14.6667 4.31826 14.6667 8.00016Z" stroke="#131313" strokeLinecap="round" strokeLinejoin="round"/>
+    </g>
+    <defs>
+      <clipPath id={`pc${idx}`}>
+        <rect width="16" height="16" fill="white"/>
+      </clipPath>
+    </defs>
+  </svg>
+);
 
+const SF_PRO = '"SF Pro Display", "SF Pro", -apple-system, BlinkMacSystemFont, sans-serif';
+
+const strokeTextStyle: React.CSSProperties = {
+  color: '#FCF6EF',
+  WebkitTextStrokeWidth: '1px',
+  WebkitTextStrokeColor: '#DFA123',
+  fontFamily: SF_PRO,
+  fontStyle: 'normal',
+  fontWeight: 700,
+  lineHeight: 'normal',
+};
+
+export const PricingSection: React.FC<PricingSectionProps> = ({ onJoinClick }) => {
   const benefits = [
     'Full portal access',
     'AI Location Finder',
@@ -17,122 +40,157 @@ export const PricingSection: React.FC<PricingSectionProps> = ({ onJoinClick }) =
     'Squat Cost Calculator',
     '100+ vetted resources & templates',
     'Vetted supplier directory',
-    'Private clinical owner community'
+    'Private clinical owner community',
   ];
 
   return (
     <section
       id="pricing"
-      className="py-24 px-6 bg-[#FAF7F2] scroll-mt-12"
+      className="py-24 px-6 scroll-mt-12"
+      style={{ background: '#FCF6EF' }}
       data-purpose="simple-pricing"
     >
-      <div className="max-w-7xl mx-auto space-y-12">
+      <div className="max-w-7xl mx-auto space-y-14">
         {/* Header */}
-        <div className="text-center space-y-2 max-w-xl mx-auto">
-          <span className="inline-block px-3 py-1 bg-[#F3EDE2] border border-[#E8CA82]/60 rounded-full text-[10px] font-bold text-[#A4741B] uppercase tracking-wider">
-            SIMPLE PRICING
-          </span>
-          <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-neutral-900 leading-tight">
+        <div className="text-center space-y-5">
+          <GradientPill>SIMPLE PRICING</GradientPill>
+          <h2
+            className="leading-tight"
+            style={{
+              fontFamily: SF_PRO,
+              fontSize: '60px',
+              fontWeight: 700,
+              color: '#131313',
+            }}
+          >
             Everything included.<br />
-            <span className="text-[#C58F28]">One simple price.</span>
+            <span style={{ color: '#C58F28' }}>One simple price.</span>
           </h2>
         </div>
 
-        {/* Master Pricing Card with Mockup Inside */}
-        <div className="max-w-5xl mx-auto bg-[#121212] border-2 border-[#C58F28] rounded-3xl p-6 sm:p-10 shadow-2xl text-white">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
-            {/* Pricing Left */}
-            <div className="lg:col-span-6 space-y-6">
+        {/* Pricing Card */}
+        <div
+          className="mx-auto relative overflow-hidden"
+          style={{
+            border: '14px solid #DFA123',
+            borderRadius: '32px',
+            background: '#121212',
+            maxWidth: '1000px',
+          }}
+        >
+          <div className="flex items-stretch">
+            {/* Left: Pricing Info */}
+            <div className="flex-1 p-10 space-y-7 min-w-0">
+              {/* Price label */}
               <div>
-                <p className="text-xs uppercase tracking-wider text-[#DFB04E] font-bold">Price</p>
-                <div className="flex items-baseline gap-2 mt-1">
-                  <span className="text-4xl sm:text-5xl font-extrabold text-white">£19.99</span>
-                  <span className="text-xs text-neutral-400">/ month</span>
+                <div className="mb-2">
+                  <span style={{ ...strokeTextStyle, fontSize: '24px' }}>Price</span>
                 </div>
-                <p className="text-xs text-neutral-300 mt-2 font-medium">
-                  Everything inside Dream Squat is included from day one.
-                </p>
+                <div className="flex items-baseline gap-3">
+                  <span
+                    style={{
+                      color: '#E3AA33',
+                      fontFamily: SF_PRO,
+                      fontSize: '60px',
+                      fontWeight: 700,
+                      lineHeight: 1,
+                    }}
+                  >
+                    £19.99
+                  </span>
+                  <span style={{ ...strokeTextStyle, fontSize: '16px' }}>/ month</span>
+                </div>
               </div>
 
-              {/* Benefits List */}
-              <div className="space-y-2 pt-2 border-t border-neutral-800">
-                <p className="text-[11px] uppercase tracking-wider text-neutral-400 font-bold mb-3">
-                  Benefits
-                </p>
-                <div className="space-y-2 text-xs text-neutral-200">
-                  {benefits.map((benefit, idx) => (
-                    <div key={idx} className="flex items-center gap-2">
-                      <span className="text-[#DFB04E] font-bold">✔</span>
-                      <span>{benefit}</span>
-                    </div>
+              {/* Benefits list */}
+              <div className="space-y-3">
+                <p style={{ color: '#FCF6EF', fontFamily: SF_PRO, fontSize: '18px', fontWeight: 700, marginBottom: '8px' }}>Benefits</p>
+                {benefits.map((benefit, idx) => (
+                  <div key={idx} className="flex items-center gap-3">
+                    <CheckIcon idx={idx} />
+                    <span
+                      style={{
+                        color: '#FCF6EF',
+                        fontFamily: SF_PRO,
+                        fontSize: '14px',
+                        fontWeight: 400,
+                        lineHeight: 'normal',
+                      }}
+                    >
+                      {benefit}
+                    </span>
+                  </div>
+                ))}
+              </div>
+
+              {/* No hidden fees — 1px white border above */}
+              <div style={{ borderTop: '1px solid #fff', paddingTop: '20px' }}>
+                <div className="space-y-2">
+                  {['No hidden fees.', 'No complicated packages.', 'No premium tier hiding the good stuff.'].map((line) => (
+                    <p key={line} style={{ color: '#FCF6EF', fontFamily: SF_PRO, fontSize: '16px', fontWeight: 400, lineHeight: 'normal' }}>
+                      {line}
+                    </p>
                   ))}
                 </div>
               </div>
 
-              <div className="pt-2 text-[11px] text-neutral-400 space-y-1">
-                <p>No hidden fees.</p>
-                <p>No complicated packages.</p>
-                <p>No premium tier hiding the good stuff.</p>
-              </div>
-
-              <div className="pt-2">
+              {/* CTA */}
+              <div className="space-y-3">
                 <button
                   onClick={onJoinClick}
                   id="pricing-checkout-btn"
-                  className="w-full sm:w-auto inline-flex items-center justify-center px-8 py-3.5 bg-[#C58F28] hover:bg-[#b07e20] text-white text-xs font-bold rounded-lg transition-all shadow-md active:scale-98 cursor-pointer gap-2"
+                  className="w-full py-4 rounded-xl text-white font-bold text-sm cursor-pointer transition-opacity hover:opacity-90"
+                  style={{ background: 'hsla(38, 97%, 29%, 1)' }}
                 >
-                  <span>Start for £19.99/month</span>
-                  <ArrowRight className="w-3.5 h-3.5" />
+                  Start for £19.99/month →
                 </button>
-                <p className="text-[10px] text-neutral-400 mt-2">
+                <p
+                  className="text-center"
+                  style={{
+                    color: '#FCF6EF',
+                    fontFamily: SF_PRO,
+                    fontSize: '14px',
+                    fontWeight: 400,
+                    lineHeight: 'normal',
+                  }}
+                >
                   Cancel anytime. No contract. Instant access.
                 </p>
               </div>
             </div>
 
-            {/* Pricing Right: Nested Portal UI Snapshot */}
-            <div className="lg:col-span-6 bg-[#1a1a1a] rounded-2xl p-4 border border-neutral-800">
-              <div className="bg-[#242424] rounded-xl p-4 space-y-4">
-                <div className="flex justify-between items-center text-xs">
-                  <span className="font-bold text-neutral-200">Platform Overview</span>
-                  <span className="text-[#DFB04E] text-[10px] font-mono">Live Access</span>
-                </div>
-
-                <div className="bg-[#181818] p-4 rounded-lg border border-neutral-700/50 space-y-2">
-                  <div className="text-[11px] font-semibold text-neutral-200">
-                    Practice Readiness Score
-                  </div>
-                  <div className="w-full bg-neutral-700 h-2 rounded-full overflow-hidden">
-                    <div className="bg-[#C58F28] h-full w-3/4 rounded-full transition-all duration-1000"></div>
-                  </div>
-                  <div className="flex justify-between text-[9px] text-neutral-400">
-                    <span>Phase 3 of 5</span>
-                    <span>75% Complete</span>
-                  </div>
-                </div>
-
-                <div className="grid grid-cols-2 gap-2 text-center text-[10px]">
-                  <div className="bg-[#1c1c1c] p-2.5 rounded border border-neutral-700/40">
-                    <span className="text-neutral-400 block text-[9px]">Locations Analyzed</span>
-                    <span className="text-sm font-bold text-[#DFB04E]">{locationsCount}</span>
-                  </div>
-                  <div className="bg-[#1c1c1c] p-2.5 rounded border border-neutral-700/40">
-                    <span className="text-neutral-400 block text-[9px]">Suppliers Saved</span>
-                    <span className="text-sm font-bold text-[#DFB04E]">{suppliersCount}</span>
-                  </div>
-                </div>
-
-                {/* Quick Interactive preview inside snapshot */}
-                <div className="bg-[#181818] p-3 rounded-lg border border-neutral-700/40 text-[10px] space-y-2">
-                  <div className="flex items-center justify-between text-neutral-300">
-                    <span className="text-[#DFB04E]">● Live Readiness Checklist</span>
-                    <span className="text-[9px] text-neutral-400">Active</span>
-                  </div>
-                  <p className="text-[10px] text-neutral-400">
-                    CQC interview prep module ready for download. Site survey template applied to Hampstead location.
-                  </p>
-                </div>
-              </div>
+            {/* Right: half-visible portal preview + glow */}
+            <div
+              className="relative shrink-0 overflow-hidden"
+              style={{ width: '440px' }}
+            >
+              {/* Gold glow anchored to left edge */}
+              <div
+                className="absolute pointer-events-none"
+                style={{
+                  left: 0,
+                  top: 0,
+                  bottom: 0,
+                  width: '180px',
+                  background: 'radial-gradient(ellipse at 0% 50%, rgba(223,161,35,0.55) 0%, rgba(223,161,35,0.15) 50%, transparent 80%)',
+                  zIndex: 2,
+                }}
+              />
+              {/* Image — anchored left, wider than container so right clips off */}
+              <img
+                src="/price-previewpng.png"
+                alt="Dream Squat portal preview"
+                style={{
+                  position: 'absolute',
+                  top: '50%',
+                  left: '0',
+                  transform: 'translateY(-50%)',
+                  width: '820px',
+                  maxWidth: 'none',
+                  height: 'auto',
+                  zIndex: 1,
+                }}
+              />
             </div>
           </div>
         </div>

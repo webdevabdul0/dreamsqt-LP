@@ -1,6 +1,17 @@
 import React, { useState } from 'react';
-import { Check, ArrowRight, Play, Calculator, FileText, Users, Award, MapPin } from 'lucide-react';
+import { Check, Play, FileText, Users } from 'lucide-react';
+import { GradientPill } from './GradientPill';
+import { FeatureTabCard } from './FeatureTabCard';
 import { COURSE_MODULES, ROADMAP_STEPS, SUPPLIERS } from '../data/mockData';
+
+// Figma tab icons
+const ICON_AI = 'http://localhost:3845/assets/d1e4cdec8926a4e24a4181005eb3e01471f342f2.svg';
+const ICON_COURSES = 'http://localhost:3845/assets/b5c1e751a32743086d08a1033e7047b8c4a6f95f.svg';
+const ICON_JOURNEY = 'http://localhost:3845/assets/71e8a6d6907fa5d0025767cd8b2b24a2c936f1a9.svg';
+const ICON_CALC = 'http://localhost:3845/assets/b82eccc375e9ef6b9585b2e66994cce735460123.svg';
+const ICON_RESOURCES = 'http://localhost:3845/assets/5cc9aa947962c785f322e6dad73012fa37ad733e.svg';
+const ICON_VETTING = 'http://localhost:3845/assets/bd07394b711bda13f406877b4ec73ead894c7791.svg';
+const ICON_COMMUNITY = 'http://localhost:3845/assets/2c439219f60f53e1980a65c8be8b97abb6ff404b.svg';
 
 interface PortalFeaturesProps {
   activeTab: string;
@@ -26,117 +37,84 @@ export const PortalFeatures: React.FC<PortalFeaturesProps> = ({
   const totalCapex = fitoutCost + equipCost + complianceLegal + workingCapital + contingency;
 
   const tabs = [
-    { id: 'AI Location Finder', label: '📍 AI Location Finder' },
-    { id: 'Courses', label: 'Courses' },
-    { id: 'My Build Journey', label: 'My Build Journey' },
-    { id: 'Cost Calculator', label: 'Cost Calculator' },
-    { id: 'Resources', label: 'Resources' },
-    { id: 'Supplier Vetting', label: 'Supplier Vetting' },
-    { id: 'Community', label: 'Community' }
+    { id: 'AI Location Finder', label: 'AI Location Finder', iconSrc: ICON_AI },
+    { id: 'Courses', label: 'Courses', iconSrc: ICON_COURSES },
+    { id: 'My Build Journey', label: 'My Build Journey', iconSrc: ICON_JOURNEY },
+    { id: 'Cost Calculator', label: 'Cost Calculator', iconSrc: ICON_CALC },
+    { id: 'Resources', label: 'Resources', iconSrc: ICON_RESOURCES },
+    { id: 'Supplier Vetting', label: 'Supplier Vetting', iconSrc: ICON_VETTING },
+    { id: 'Community', label: 'Community', iconSrc: ICON_COMMUNITY },
   ];
 
   return (
     <section
       id="portal-features-section"
-      className="py-20 px-6 bg-[#FAF7F2] border-t border-black/5 scroll-mt-16"
+      className="py-20 px-6 scroll-mt-16"
+      style={{ background: '#FFF0D1' }}
       data-purpose="features-showcase"
     >
       <div className="max-w-7xl mx-auto space-y-12">
         {/* Header */}
-        <div className="text-center max-w-2xl mx-auto space-y-3">
-          <span className="text-[10px] uppercase font-bold tracking-widest text-[#A4741B]">
-            ONE PORTAL, EVERYTHING YOU NEED.
-          </span>
-          <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-neutral-900">
-            From "Where do I start?" to <span className="text-[#C58F28]">"We're open."</span>
+        <div className="max-w-3xl space-y-5">
+          <GradientPill>ONE PORTAL. EVERYTHING YOU NEED.</GradientPill>
+          <h2
+            className="leading-tight"
+            style={{
+              fontFamily: '"SF Pro Display", "SF Pro", -apple-system, BlinkMacSystemFont, sans-serif',
+              fontSize: '60px',
+              fontWeight: 700,
+              color: '#131313',
+            }}
+          >
+            From "Where do I start?"<br />to "<span style={{ color: '#C58F28' }}>We're open.</span>"
           </h2>
-          <p className="text-xs text-neutral-600">
+          <p style={{ color: '#131313', fontSize: '16px', fontWeight: 400, lineHeight: '1.6' }}>
             Dream Squat brings the tools, education, resources and support you need to build your practice{' '}
-            <strong className="text-neutral-800">all in one place.</strong>
+            <strong>all in one place.</strong>
           </p>
         </div>
 
-        {/* Horizontal Tab Pill Navigation */}
-        <div className="flex flex-wrap justify-center items-center gap-2 max-w-4xl mx-auto">
+        {/* Horizontal Tab Navigation */}
+        <div className="flex flex-wrap items-center gap-2">
           {tabs.map((tab) => {
             const isActive = activeTab === tab.id;
             return (
               <button
                 key={tab.id}
                 onClick={() => setActiveTab(tab.id)}
-                className={`px-4 py-2 text-xs rounded-lg transition-all cursor-pointer font-medium ${
+                className="flex items-center gap-2 px-4 py-2.5 text-sm rounded-lg transition-all cursor-pointer font-medium"
+                style={
                   isActive
-                    ? 'bg-[#121212] text-white font-semibold shadow-sm ring-1 ring-black/10'
-                    : 'bg-white hover:bg-neutral-100 text-neutral-700 border border-neutral-200'
-                }`}
+                    ? { background: '#121212', color: '#fff', border: '1px solid transparent' }
+                    : { background: 'transparent', color: '#131313', border: '1px solid #925E02' }
+                }
               >
+                <img
+                  src={tab.iconSrc}
+                  alt=""
+                  width={17}
+                  height={17}
+                  style={isActive ? { filter: 'brightness(0) invert(1)' } : {}}
+                />
                 {tab.label}
               </button>
             );
           })}
         </div>
 
-        {/* Tab Content Display */}
-        <div className="max-w-6xl mx-auto pt-4">
-          {/* TAB 1: AI Location Finder (Exact Reference View) */}
+        {/* Tab Content Display — full width to match max-w-7xl container */}
+        <div>
+          {/* TAB 1: AI Location Finder */}
           {activeTab === 'AI Location Finder' && (
-            <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-stretch animate-in fade-in duration-300">
-              {/* Description Card (Gold) */}
-              <div className="lg:col-span-5 bg-[#C58F28] text-white rounded-2xl p-8 flex flex-col justify-between shadow-lg">
-                <div className="space-y-4">
-                  <span className="inline-block px-3 py-0.5 bg-black/20 text-amber-100 text-[10px] font-bold uppercase rounded">
-                    AI LOCATION FINDER
-                  </span>
-                  <h3 className="text-2xl sm:text-3xl font-bold leading-tight">
-                    Find the right location before you commit.
-                  </h3>
-                  <p className="text-xs text-amber-50 leading-relaxed pt-2">
-                    Dream Squat analyses local demographics, competition, NHS capacity, deprivation data and
-                    growth signals then uses AI to help you understand whether the location is worth pursuing
-                    and whether a private or mixed model makes sense.
-                  </p>
-                </div>
-
-                <div className="pt-8 space-y-2 text-xs font-medium text-amber-100">
-                  <div className="flex items-center gap-2">
-                    <span className="w-1.5 h-1.5 rounded-full bg-white"></span>
-                    <span>Postcode search</span>
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <span className="w-1.5 h-1.5 rounded-full bg-white"></span>
-                    <span>Map analysis</span>
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <span className="w-1.5 h-1.5 rounded-full bg-white"></span>
-                    <span>AI analytics</span>
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <span className="w-1.5 h-1.5 rounded-full bg-white"></span>
-                    <span>Recommendation score</span>
-                  </div>
-                </div>
-              </div>
-
-              {/* Visual Showcase Card */}
-              <div className="lg:col-span-7 bg-neutral-900 rounded-2xl overflow-hidden shadow-xl relative min-h-[380px]">
-                <img
-                  src="https://lh3.googleusercontent.com/aida-public/AB6AXuA8aHK1zYIpViMUKhj3ZXyidHQN0rFIpu8SMagSeo0TeSj00r4wx9xunKCSArqAL0fY_SeUccNuzKn8OMmHUEIKvXaByT4jcxqlAtqoFFo_uRM2VpahonHtjrOxZm-MDZIiM_ZZmENPz8cXKPJNG8z-iQ8DkO7Oc8qBgQvxfwtohdyc-d02F2-BH4Eev2mJlGSnwozfdNwxGVlvy6GRC33QGvItDfrRHv3pQdgIPmIqzH5ispB0G3KQyg"
-                  alt="AI Location Finder Visualizer"
-                  className="w-full h-full object-cover opacity-80"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent flex items-end p-6">
-                  <div className="bg-black/80 backdrop-blur-md border border-neutral-700 p-4 rounded-xl text-white max-w-sm">
-                    <div className="flex items-center gap-2 text-[#DFB04E] text-xs font-bold mb-1">
-                      <MapPin className="w-3.5 h-3.5" />
-                      <span>Postcode Heatmap: High Demand</span>
-                    </div>
-                    <p className="text-[11px] text-neutral-300">
-                      Target area demonstrates 3.2x deficit in private dental chairs per 10k adults.
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </div>
+            <FeatureTabCard
+              label="AI LOCATION FINDER"
+              heading="Find the right location before you commit."
+              description="Dream Squat analyses local demographics, competition, NHS capacity, deprivation data and growth signals then uses AI to help you understand whether the location is worth pursuing and whether a private or mixed model makes sense."
+              bullets={['Postcode search', 'map', 'AI analysis', 'Recommendation.']}
+              imageSrc="/portal-ai-location.png"
+              imageAlt="AI Location Finder — city map with glowing location pin"
+              cardBg="#7B5214"
+            />
           )}
 
           {/* TAB 2: Courses */}

@@ -1,5 +1,5 @@
 import React from 'react';
-import { X, Check } from 'lucide-react';
+import { GradientPill } from './GradientPill';
 
 export const ProblemSection: React.FC = () => {
   return (
@@ -18,65 +18,100 @@ export const ProblemSection: React.FC = () => {
       {/* The Problem Section */}
       <section
         id="the-problem-section"
-        className="py-18 px-6 max-w-7xl mx-auto"
+        className="py-20 px-6"
+        style={{ background: 'hsla(32, 68%, 96%, 1)' }}
         data-purpose="the-problem-breakdown"
       >
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
-          {/* Left: The Frustration & Tag Clouds */}
-          <div className="lg:col-span-7 bg-[#F5EFE4]/60 border border-[#E8DCC8] rounded-2xl p-8 sm:p-10 flex flex-col justify-between">
+        <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-[55fr_45fr] gap-6 items-center">
+          {/* Left: The Frustration */}
+          <div className="flex flex-col gap-5 relative">
             <div>
-              <span className="inline-block px-3 py-0.5 bg-[#FAF7F2] border border-[#C58F28]/30 rounded-full text-[10px] font-bold text-[#A4741B] uppercase tracking-wider mb-4">
-                THE PROBLEM
-              </span>
-              <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-neutral-900 leading-tight">
-                Going squat shouldn't feel this <span className="text-[#C58F28]">complicated.</span>
+              <div className="mb-5">
+                <GradientPill>THE PROBLEM</GradientPill>
+              </div>
+              <h2
+                className="leading-tight"
+                style={{ fontFamily: '"SF Pro Display", "SF Pro", -apple-system, BlinkMacSystemFont, sans-serif', fontSize: '60px', fontWeight: 700, color: '#131313' }}
+              >
+                Going squat shouldn't<br />feel this <span style={{ color: '#C58F28' }}>complicated.</span>
               </h2>
-              <p className="text-xs text-neutral-600 mt-3 leading-relaxed">
+              <p className="text-sm text-neutral-600 mt-5 leading-relaxed">
                 Most dentists who dream of opening their own practice never take the leap.
               </p>
-              <p className="text-xs font-bold text-neutral-800 mt-4 leading-relaxed">
-                Not because they aren't capable, but because finding the right information can feel impossible.
+              <p className="text-sm font-bold text-neutral-800 mt-2 leading-relaxed">
+                Not because they aren't capable but because finding the right information can feel impossible.
               </p>
             </div>
 
-            {/* Scatter Pills / Cloud */}
-            <div className="pt-10 flex flex-wrap gap-2.5 items-center">
+            {/* Tag pills */}
+            <div className="flex flex-wrap gap-2 items-start">
               {[
-                'Google searches',
+                'Google searches.',
                 'Conflicting advice',
                 'Endless decisions',
                 'Months spent trying to work out',
                 'what to do',
                 'when to do it',
-                'who to trust.'
+                'who to trust.',
               ].map((pill, idx) => (
                 <span
                   key={idx}
-                  className="px-3.5 py-1.5 bg-[#FAF7F2] border border-[#D5C29E] rounded-md text-[11px] font-medium text-neutral-700 shadow-2xs hover:border-[#C58F28] transition-colors"
+                  className="px-3.5 py-1.5 text-[13px] text-neutral-800"
+                  style={{
+                    borderRadius: '8px',
+                    border: '1px solid #E3AA33',
+                    background: '#FFF0D1',
+                  }}
                 >
                   {pill}
                 </span>
               ))}
             </div>
+
           </div>
 
-          {/* Right: Gold Card Revelation */}
-          <div className="lg:col-span-5 bg-[#C58F28] text-white rounded-2xl p-8 sm:p-10 flex flex-col justify-between shadow-lg">
-            <div>
-              <h3 className="text-2xl sm:text-3xl font-bold leading-snug">
-                You're a brilliant clinician being asked to become a business owner overnight.
-              </h3>
-            </div>
+          {/* Right: Gold Gradient Card */}
+          <div
+            className="text-white flex flex-col justify-between p-10 gap-8 relative"
+            style={{
+              borderRadius: '20px',
+              background: 'linear-gradient(90deg, #925E02 -9.6%, #C5A13B 48.65%, #E6CC60 93.96%, #F2DC6E 115.53%, #ECD465 130.63%, #DDBD4E 152.2%, #C49727 182.41%, #B07908 201.82%)',
+            }}
+          >
+            {/* Arrow at bottom-left corner */}
+            <img src="/arrow.svg" alt="" width={160} height={110} className="absolute -bottom-12 -left-32 pointer-events-none" />
 
-            <div className="space-y-3 pt-8">
-              <div className="bg-white/10 backdrop-blur-sm border border-white/20 rounded-xl p-3.5 flex items-center gap-3 text-xs font-medium">
-                <X className="w-4 h-4 text-amber-200 shrink-0" />
-                <span>You don't need more information.</span>
-              </div>
-              <div className="bg-white/10 backdrop-blur-sm border border-white/20 rounded-xl p-3.5 flex items-center gap-3 text-xs font-bold text-amber-100">
-                <Check className="w-4 h-4 text-emerald-300 shrink-0" />
-                <span>You need the right information, in the right order.</span>
-              </div>
+            <h3 className="leading-tight text-white" style={{ fontFamily: '"SF Pro Display", "SF Pro", -apple-system, BlinkMacSystemFont, sans-serif', fontSize: '40px', fontWeight: 700 }}>
+              You're a brilliant clinician being asked to become a business owner overnight.
+            </h3>
+
+            <div className="space-y-3">
+              {[
+                "You don't need more information.",
+                'You need the right information, in the right order.',
+              ].map((text, idx) => (
+                <div
+                  key={idx}
+                  className="flex items-center gap-3 px-4 py-3"
+                  style={{
+                    borderRadius: '8px',
+                    border: '1px solid #E3AA33',
+                    background: '#FFF0D1',
+                  }}
+                >
+                  <img src="/checkmark.svg" alt="✓" width={24} height={24} className="shrink-0" />
+                  <span
+                    style={{
+                      color: '#131313',
+                      fontFamily: '"SF Pro", -apple-system, BlinkMacSystemFont, sans-serif',
+                      fontSize: '16px',
+                      fontWeight: 400,
+                    }}
+                  >
+                    {text}
+                  </span>
+                </div>
+              ))}
             </div>
           </div>
         </div>

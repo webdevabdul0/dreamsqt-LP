@@ -13,8 +13,8 @@ import { FounderSection } from './components/FounderSection';
 import { PortalFeatures } from './components/PortalFeatures';
 import { PricingSection } from './components/PricingSection';
 import { RiskSection } from './components/RiskSection';
+import { StopSearching } from './components/StopSearching';
 import { BannerCTA } from './components/BannerCTA';
-import { PostcodeTool } from './components/PostcodeTool';
 import { Footer } from './components/Footer';
 import { Modals } from './components/Modals';
 
@@ -96,8 +96,8 @@ export default function App() {
         {/* 10. Warm Gold CTA Banner with Dental Studio Interior Photo */}
         <BannerCTA onJoinClick={() => setActiveModal('login')} />
 
-        {/* 11. Live UK Postcode Viability Analyzer Tool */}
-        <PostcodeTool onJoinClick={() => setActiveModal('login')} />
+        {/* 11. Stop Searching. Start Building. */}
+        <StopSearching />
       </main>
 
       {/* 12. Site Footer with Newsletter and Watermark */}

@@ -29,26 +29,14 @@ export const Header: React.FC<HeaderProps> = ({
       data-purpose="site-navigation"
     >
       <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
-        {/* Logo */}
-        <a href="#" className="flex items-center gap-3 group" id="brand-logo">
-          <div className="w-10 h-10 rounded-lg bg-[#1a1a1a] flex items-center justify-center p-1.5 shadow-sm group-hover:scale-105 transition-transform">
-            {/* Stylized DS monogram inside golden container */}
-            <div className="w-full h-full border border-[#C58F28] rounded flex items-center justify-center">
-              <span className="text-[#C58F28] font-bold text-lg tracking-tighter">DS</span>
-            </div>
-          </div>
-          <div className="flex flex-col text-left">
-            <span className="font-bold tracking-tight text-lg leading-tight text-[#1A1A1A]">
-              DREAM SQUAT
-            </span>
-            <span className="text-[9px] uppercase tracking-wider text-[#A4741B] font-semibold">
-              Dental Portal
-            </span>
-          </div>
-        </a>
+        {/* Logo + Nav grouped left */}
+        <div className="flex items-center gap-8">
+          <a href="#" className="flex items-center gap-2.5 group shrink-0" id="brand-logo">
+            <img src="/logo.svg" alt="Dream Squat" className="w-9 h-9 group-hover:scale-105 transition-transform" />
+          </a>
 
-        {/* Desktop Nav */}
-        <nav className="hidden md:flex items-center space-x-7 text-xs font-medium text-neutral-700">
+          {/* Desktop Nav immediately next to logo */}
+          <nav className="hidden md:flex items-center space-x-7" style={{ fontFamily: '"SF Pro", -apple-system, BlinkMacSystemFont, sans-serif', fontSize: '14px', fontWeight: 590, color: '#131313' }}>
           <button
             onClick={onScrollToPortal}
             className="text-[#C58F28] font-semibold hover:text-[#A4741B] transition-colors cursor-pointer"
@@ -58,40 +46,41 @@ export const Header: React.FC<HeaderProps> = ({
           </button>
           <button
             onClick={onOpenCalculator}
-            className="hover:text-black transition-colors cursor-pointer text-neutral-700 font-medium"
+            className="hover:opacity-70 transition-opacity cursor-pointer"
             id="nav-comparison-calc"
           >
             Comparison Calculator
           </button>
           <button
             onClick={onOpenEvent}
-            className="hover:text-black transition-colors cursor-pointer text-neutral-700 font-medium"
+            className="hover:opacity-70 transition-opacity cursor-pointer"
             id="nav-event"
           >
             Event
           </button>
           <button
             onClick={onOpenResources}
-            className="hover:text-black transition-colors cursor-pointer text-neutral-700 font-medium"
+            className="hover:opacity-70 transition-opacity cursor-pointer"
             id="nav-free-resources"
           >
             Free Resources
           </button>
           <button
             onClick={onOpenBlogs}
-            className="hover:text-black transition-colors cursor-pointer text-neutral-700 font-medium"
+            className="hover:opacity-70 transition-opacity cursor-pointer"
             id="nav-blogs"
           >
             Blogs
           </button>
           <button
             onClick={onOpenContact}
-            className="hover:text-black transition-colors cursor-pointer text-neutral-700 font-medium"
+            className="hover:opacity-70 transition-opacity cursor-pointer"
             id="nav-contact"
           >
             Contact Us
           </button>
         </nav>
+        </div>{/* end logo+nav group */}
 
         {/* Auth Action & Mobile Toggle */}
         <div className="flex items-center gap-3">
