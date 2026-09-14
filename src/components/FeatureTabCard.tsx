@@ -6,7 +6,7 @@ interface FeatureTabCardProps {
   label: string;
   heading: React.ReactNode;
   body: React.ReactNode;
-  footer: string;
+  footer?: string;
   imageSrc: string;
   imageAlt: string;
   cardBg?: string;
@@ -45,15 +45,17 @@ export const FeatureTabCard: React.FC<FeatureTabCardProps> = ({
         </h3>
 
         {/* Body */}
-        <div style={{ color: 'rgba(255,255,255,0.9)', fontSize: '16px', lineHeight: '1.6', fontFamily: SF_PRO, letterSpacing: '-0.32px' }}>
+        <div style={{ color: '#FCF6EF', fontSize: '16px', fontWeight: 400, lineHeight: 'normal', fontFamily: SF_PRO, fontStyle: 'normal' }}>
           {body}
         </div>
       </div>
 
       {/* Footer */}
-      <p style={{ fontFamily: SF_PRO, fontSize: '24px', fontWeight: 400, color: '#fff', letterSpacing: '-0.48px', lineHeight: 'normal', marginTop: '24px' }}>
-        {footer}
-      </p>
+      {footer && (
+        <p style={{ fontFamily: SF_PRO, fontSize: '24px', fontWeight: 400, fontStyle: 'normal', color: '#fff', letterSpacing: '-0.48px', lineHeight: 'normal', marginTop: '24px' }}>
+          {footer}
+        </p>
+      )}
     </div>
 
     {/* Right panel — photo */}

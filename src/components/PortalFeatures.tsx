@@ -72,7 +72,7 @@ export const PortalFeatures: React.FC<PortalFeaturesProps> = ({
                     : { background: 'transparent', color: '#131313', border: '1px solid #925E02' }
                 }
               >
-                <img src={tab.iconSrc} alt="" width={17} height={17} style={isActive ? { filter: 'brightness(0) invert(1)' } : {}} />
+                <img src={tab.iconSrc} alt="" width={17} height={17} style={{ filter: isActive ? 'brightness(0) invert(1)' : 'brightness(0)' }} />
                 {tab.label}
               </button>
             );
@@ -99,7 +99,6 @@ export const PortalFeatures: React.FC<PortalFeaturesProps> = ({
                   </div>
                 </div>
               }
-              footer="The right location changes everything."
               imageSrc="/portal-ai-location.png"
               imageAlt="AI Location Finder — city map with glowing location pin"
               cardBg="#7B5214"

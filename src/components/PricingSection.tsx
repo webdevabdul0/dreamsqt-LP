@@ -78,7 +78,21 @@ export const PricingSection: React.FC<PricingSectionProps> = ({ onJoinClick }) =
             maxWidth: '1000px',
           }}
         >
-          <div className="flex items-stretch">
+          {/* Circular glow behind right image panel */}
+          <div
+            className="absolute pointer-events-none"
+            style={{
+              right: '-60px',
+              top: '50%',
+              transform: 'translateY(-50%)',
+              width: '600px',
+              height: '600px',
+              borderRadius: '50%',
+              background: 'radial-gradient(circle, rgba(223,161,35,0.45) 0%, transparent 70%)',
+              zIndex: 0,
+            }}
+          />
+          <div className="flex items-stretch" style={{ position: 'relative', zIndex: 1 }}>
             {/* Left: Pricing Info */}
             <div className="flex-1 p-10 space-y-7 min-w-0">
               {/* Price label */}
@@ -164,19 +178,7 @@ export const PricingSection: React.FC<PricingSectionProps> = ({ onJoinClick }) =
               className="relative shrink-0 overflow-hidden"
               style={{ width: '440px' }}
             >
-              {/* Gold glow anchored to left edge */}
-              <div
-                className="absolute pointer-events-none"
-                style={{
-                  left: 0,
-                  top: 0,
-                  bottom: 0,
-                  width: '180px',
-                  background: 'radial-gradient(ellipse at 0% 50%, rgba(223,161,35,0.55) 0%, rgba(223,161,35,0.15) 50%, transparent 80%)',
-                  zIndex: 2,
-                }}
-              />
-              {/* Image — anchored left, wider than container so right clips off */}
+{/* Image — anchored left, wider than container so right clips off */}
               <img
                 src="/price-previewpng.png"
                 alt="Dream Squat portal preview"

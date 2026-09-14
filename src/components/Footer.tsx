@@ -32,8 +32,8 @@ export const Footer: React.FC<FooterProps> = ({
     <footer className="relative bg-[#FAF7F2] overflow-hidden py-20 px-5">
       {/* Giant watermark */}
       <div
-        className="absolute bottom-0 left-1/2 -translate-x-1/2 select-none pointer-events-none font-bold whitespace-nowrap text-[#131313]"
-        style={{ fontSize: '240px', lineHeight: 1, opacity: 0.03 }}
+        className="absolute left-1/2 -translate-x-1/2 select-none pointer-events-none font-bold whitespace-nowrap text-[#131313]"
+        style={{ fontSize: '240px', lineHeight: 1, opacity: 0.03, bottom: '-60px' }}
       >
         Dream Squat
       </div>

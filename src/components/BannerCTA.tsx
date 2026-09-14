@@ -1,7 +1,7 @@
 import React from 'react';
 
 const SF_PRO = '"SF Pro Display", "SF Pro", -apple-system, BlinkMacSystemFont, sans-serif';
-const CHAIR_IMG = 'http://localhost:3845/assets/c1d81d1aa2892751ca01993e1bf61d2d4576c393.png';
+const CHAIR_IMG = '/banner-chair.png';
 const GOLD_GRADIENT = 'linear-gradient(89.7deg, rgb(146,94,2) 3.93%, rgb(197,161,59) 55.47%, rgb(230,204,96) 95.56%, rgb(242,220,110) 114.65%, rgb(236,212,101) 128.02%, rgb(221,189,78) 147.11%, rgb(196,151,39) 173.84%, rgb(176,121,8) 191.02%)';
 
 interface BannerCTAProps {
