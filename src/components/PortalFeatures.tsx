@@ -1,41 +1,24 @@
-import React, { useState } from 'react';
-import { Check, Play, FileText, Users } from 'lucide-react';
+import React from 'react';
 import { GradientPill } from './GradientPill';
 import { FeatureTabCard } from './FeatureTabCard';
-import { COURSE_MODULES, ROADMAP_STEPS, SUPPLIERS } from '../data/mockData';
 
-// Figma tab icons
-const ICON_AI = 'http://localhost:3845/assets/d1e4cdec8926a4e24a4181005eb3e01471f342f2.svg';
-const ICON_COURSES = 'http://localhost:3845/assets/b5c1e751a32743086d08a1033e7047b8c4a6f95f.svg';
-const ICON_JOURNEY = 'http://localhost:3845/assets/71e8a6d6907fa5d0025767cd8b2b24a2c936f1a9.svg';
-const ICON_CALC = 'http://localhost:3845/assets/b82eccc375e9ef6b9585b2e66994cce735460123.svg';
-const ICON_RESOURCES = 'http://localhost:3845/assets/5cc9aa947962c785f322e6dad73012fa37ad733e.svg';
-const ICON_VETTING = 'http://localhost:3845/assets/bd07394b711bda13f406877b4ec73ead894c7791.svg';
-const ICON_COMMUNITY = 'http://localhost:3845/assets/2c439219f60f53e1980a65c8be8b97abb6ff404b.svg';
+const ICON_AI = '/icon-ai.svg';
+const ICON_COURSES = '/icon-courses.svg';
+const ICON_JOURNEY = '/icon-journey.svg';
+const ICON_CALC = '/icon-calc.svg';
+const ICON_RESOURCES = '/icon-resources.svg';
+const ICON_VETTING = '/icon-vetting.svg';
+const ICON_COMMUNITY = '/icon-community.svg';
 
 interface PortalFeaturesProps {
   activeTab: string;
   setActiveTab: (tab: string) => void;
-  onOpenChecklistModal: () => void;
 }
 
 export const PortalFeatures: React.FC<PortalFeaturesProps> = ({
   activeTab,
   setActiveTab,
-  onOpenChecklistModal
 }) => {
-  // Mini interactive state for Cost Calculator tab
-  const [surgeryCount, setSurgeryCount] = useState<number>(2);
-  const [finishLevel, setFinishLevel] = useState<'standard' | 'premium' | 'luxury'>('premium');
-
-  // Mini cost calculations
-  const fitoutCost = surgeryCount * (finishLevel === 'standard' ? 45000 : finishLevel === 'premium' ? 62000 : 85000);
-  const equipCost = surgeryCount * (finishLevel === 'standard' ? 32000 : finishLevel === 'premium' ? 48000 : 70000);
-  const complianceLegal = 18500;
-  const workingCapital = 25000;
-  const contingency = Math.round((fitoutCost + equipCost) * 0.08);
-  const totalCapex = fitoutCost + equipCost + complianceLegal + workingCapital + contingency;
-
   const tabs = [
     { id: 'AI Location Finder', label: 'AI Location Finder', iconSrc: ICON_AI },
     { id: 'Courses', label: 'Courses', iconSrc: ICON_COURSES },
@@ -89,13 +72,7 @@ export const PortalFeatures: React.FC<PortalFeaturesProps> = ({
                     : { background: 'transparent', color: '#131313', border: '1px solid #925E02' }
                 }
               >
-                <img
-                  src={tab.iconSrc}
-                  alt=""
-                  width={17}
-                  height={17}
-                  style={isActive ? { filter: 'brightness(0) invert(1)' } : {}}
-                />
+                <img src={tab.iconSrc} alt="" width={17} height={17} style={isActive ? { filter: 'brightness(0) invert(1)' } : {}} />
                 {tab.label}
               </button>
             );
@@ -109,8 +86,20 @@ export const PortalFeatures: React.FC<PortalFeaturesProps> = ({
             <FeatureTabCard
               label="AI LOCATION FINDER"
               heading="Find the right location before you commit."
-              description="Dream Squat analyses local demographics, competition, NHS capacity, deprivation data and growth signals then uses AI to help you understand whether the location is worth pursuing and whether a private or mixed model makes sense."
-              bullets={['Postcode search', 'map', 'AI analysis', 'Recommendation.']}
+              body={
+                <div className="space-y-3">
+                  <p>Dream Squat analyses local demographics, competition, NHS capacity, deprivation data and growth signals then uses AI to help you understand whether the location is worth pursuing and whether a private or mixed model makes sense.</p>
+                  <div className="flex gap-6 pt-1">
+                    <div className="space-y-2 text-sm opacity-80">
+                      {['01','02','03','04'].map(n => <p key={n}>{n}</p>)}
+                    </div>
+                    <div className="space-y-2 text-sm">
+                      {['Postcode search','Map analysis','AI viability score','Recommendation'].map(i => <p key={i}>{i}</p>)}
+                    </div>
+                  </div>
+                </div>
+              }
+              footer="The right location changes everything."
               imageSrc="/portal-ai-location.png"
               imageAlt="AI Location Finder — city map with glowing location pin"
               cardBg="#7B5214"
@@ -119,306 +108,123 @@ export const PortalFeatures: React.FC<PortalFeaturesProps> = ({
 
           {/* TAB 2: Courses */}
           {activeTab === 'Courses' && (
-            <div className="bg-white border border-neutral-200 rounded-2xl p-6 sm:p-8 shadow-sm space-y-6 animate-in fade-in">
-              <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2 border-b border-neutral-100 pb-4">
-                <div>
-                  <h3 className="text-xl font-bold text-neutral-900">5-Module Squat Masterclass Series</h3>
-                  <p className="text-xs text-neutral-500">Over 16 hours of clinical owner curriculum with downloadable action worksheets.</p>
-                </div>
-                <span className="text-xs font-semibold text-[#A4741B] bg-[#F8F4EC] border border-[#E8CA82]/50 px-3 py-1 rounded-full">
-                  5 Modules • 50 Video Lessons
-                </span>
-              </div>
-
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-                {COURSE_MODULES.map((mod) => (
-                  <div key={mod.number} className="bg-[#FAF7F2] border border-neutral-200/80 rounded-xl p-4 flex flex-col justify-between hover:border-[#C58F28] transition-colors">
-                    <div className="space-y-2">
-                      <div className="flex items-center justify-between text-[11px] font-bold text-[#A4741B]">
-                        <span>MODULE {mod.number}</span>
-                        <span className="text-neutral-500 font-normal">{mod.duration}</span>
-                      </div>
-                      <h4 className="font-bold text-sm text-neutral-900">{mod.title}</h4>
-                      <p className="text-[11px] text-neutral-600 leading-relaxed">{mod.summary}</p>
+            <FeatureTabCard
+              label="5-MODULE COURSE"
+              heading="A clear roadmap from zero to open."
+              body={
+                <div className="space-y-3">
+                  <p>Five practical modules, filmed by Saba and built around the exact framework she uses when mentoring dentists.</p>
+                  <p>Short, focused lessons. Real examples. Real case studies. No unnecessary theory.</p>
+                  <p style={{ fontWeight: 700 }}>The 5 Modules</p>
+                  <div className="flex gap-5">
+                    <div className="space-y-1 opacity-70">
+                      {['01','02','03','04','05'].map(n => <p key={n}>{n}</p>)}
                     </div>
-                    <div className="pt-4 flex items-center justify-between text-xs">
-                      <span className="text-neutral-500 text-[10px]">{mod.lessons} Lessons</span>
-                      <button
-                        onClick={onOpenChecklistModal}
-                        className="text-[#A4741B] font-semibold text-[11px] flex items-center gap-1 hover:underline cursor-pointer"
-                      >
-                        <Play className="w-3 h-3 fill-current" />
-                        Preview Module
-                      </button>
+                    <div className="space-y-1">
+                      {['Finding the Right Location','Business Planning & Fundamentals','CQC Registration','Fit-Out & Equipment','Social Media & Marketing'].map(i => <p key={i}>{i}</p>)}
                     </div>
                   </div>
-                ))}
-              </div>
-            </div>
+                </div>
+              }
+              footer="Learn what matters. Skip what doesn't."
+              imageSrc="/portal-courses.png"
+              imageAlt="Courses — 5-module squat masterclass"
+              cardBg="#7B5214"
+            />
           )}
 
           {/* TAB 3: My Build Journey */}
           {activeTab === 'My Build Journey' && (
-            <div className="bg-white border border-neutral-200 rounded-2xl p-6 sm:p-8 shadow-sm space-y-6 animate-in fade-in">
-              <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2 border-b border-neutral-100 pb-4">
-                <div>
-                  <h3 className="text-xl font-bold text-neutral-900">Interactive Build Journey Roadmap</h3>
-                  <p className="text-xs text-neutral-500">Every single milestone in exact chronological order from Day 1 to Opening Day.</p>
+            <FeatureTabCard
+              label="BUILD JOURNEY"
+              heading="Build your practice. Document the journey."
+              body={
+                <div className="space-y-3">
+                  <p>Your squat isn't just a project. It's something you'll want to remember.</p>
+                  <p>The Build Journey lets you track milestones, record decisions, manage your budget and document your progress from day one.</p>
                 </div>
-                <button
-                  onClick={onOpenChecklistModal}
-                  className="bg-[#C58F28] text-white text-xs font-semibold px-4 py-1.5 rounded-md hover:bg-[#A4741B] transition cursor-pointer"
-                >
-                  Download Master PDF
-                </button>
-              </div>
-
-              <div className="space-y-4">
-                {ROADMAP_STEPS.map((step) => (
-                  <div
-                    key={step.phase}
-                    className={`border rounded-xl p-4 transition-all ${
-                      step.completed ? 'bg-[#FBF8F3] border-[#E8CA82]' : 'bg-white border-neutral-200'
-                    }`}
-                  >
-                    <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-2">
-                      <div className="flex items-center gap-2.5">
-                        <div
-                          className={`w-6 h-6 rounded-full flex items-center justify-center text-xs font-bold ${
-                            step.completed ? 'bg-emerald-600 text-white' : 'bg-neutral-200 text-neutral-700'
-                          }`}
-                        >
-                          {step.completed ? '✓' : step.phase}
-                        </div>
-                        <div>
-                          <span className="text-[10px] font-bold uppercase tracking-wider text-[#A4741B] block">
-                            {step.phaseName} ({step.timeline})
-                          </span>
-                          <h4 className="font-bold text-sm text-neutral-900">{step.title}</h4>
-                        </div>
-                      </div>
-                      <span
-                        className={`text-[10px] font-semibold px-2.5 py-0.5 rounded-full self-start sm:self-auto ${
-                          step.completed ? 'bg-emerald-100 text-emerald-800' : 'bg-neutral-100 text-neutral-600'
-                        }`}
-                      >
-                        {step.completed ? 'Milestone Complete' : 'In Progress / Upcoming'}
-                      </span>
-                    </div>
-
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 mt-3 pt-2 border-t border-neutral-100">
-                      {step.tasks.map((task, tidx) => (
-                        <div key={tidx} className="flex items-start gap-2 text-xs text-neutral-700">
-                          <Check className={`w-3.5 h-3.5 mt-0.5 shrink-0 ${step.completed ? 'text-emerald-600' : 'text-neutral-400'}`} />
-                          <span>{task}</span>
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
+              }
+              footer="One day, you'll look back and see exactly how you built something from nothing."
+              imageSrc="/portal-journey.png"
+              imageAlt="My Build Journey — practice build roadmap"
+              cardBg="#7B5214"
+            />
           )}
 
           {/* TAB 4: Cost Calculator */}
           {activeTab === 'Cost Calculator' && (
-            <div className="bg-white border border-neutral-200 rounded-2xl p-6 sm:p-8 shadow-sm space-y-6 animate-in fade-in">
-              <div className="border-b border-neutral-100 pb-4">
-                <h3 className="text-xl font-bold text-neutral-900">Squat Dental Practice Capex Estimator</h3>
-                <p className="text-xs text-neutral-500">Benchmark your fit-out, dental equipment, legal, and operational working capital.</p>
-              </div>
-
-              <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
-                {/* Controls */}
-                <div className="lg:col-span-6 space-y-5">
-                  <div>
-                    <label className="text-xs font-bold text-neutral-800 block mb-2">
-                      Number of Dental Surgeries (Chairs)
-                    </label>
-                    <div className="grid grid-cols-4 gap-2">
-                      {[1, 2, 3, 4].map((chairs) => (
-                        <button
-                          key={chairs}
-                          onClick={() => setSurgeryCount(chairs)}
-                          className={`py-2 text-xs font-bold rounded-lg border transition-all cursor-pointer ${
-                            surgeryCount === chairs
-                              ? 'bg-[#121212] text-white border-black shadow-xs'
-                              : 'bg-neutral-50 text-neutral-700 border-neutral-200 hover:bg-neutral-100'
-                          }`}
-                        >
-                          {chairs} {chairs === 1 ? 'Surgery' : 'Surgeries'}
-                        </button>
-                      ))}
-                    </div>
-                  </div>
-
-                  <div>
-                    <label className="text-xs font-bold text-neutral-800 block mb-2">
-                      Finish Standard &amp; Spec
-                    </label>
-                    <div className="grid grid-cols-3 gap-2">
-                      {(['standard', 'premium', 'luxury'] as const).map((lvl) => (
-                        <button
-                          key={lvl}
-                          onClick={() => setFinishLevel(lvl)}
-                          className={`py-2 text-xs font-semibold capitalize rounded-lg border transition-all cursor-pointer ${
-                            finishLevel === lvl
-                              ? 'bg-[#C58F28] text-white border-[#C58F28] shadow-xs'
-                              : 'bg-neutral-50 text-neutral-700 border-neutral-200 hover:bg-neutral-100'
-                          }`}
-                        >
-                          {lvl}
-                        </button>
-                      ))}
-                    </div>
-                  </div>
-
-                  <div className="bg-[#FAF7F2] p-4 rounded-xl border border-neutral-200 text-xs space-y-2">
-                    <p className="font-bold text-neutral-900">Expert Squat Tip from Dr. Saba Arif:</p>
-                    <p className="text-neutral-600 leading-relaxed text-[11px]">
-                      "Always plumb and lead-line 2 to 3 surgery rooms on day one, even if you only install 1 chair initially. Doing secondary fit-out while open for patients creates dust and cancels appointments."
-                    </p>
-                  </div>
+            <FeatureTabCard
+              label="COST CALCULATOR"
+              heading="Know your numbers before you commit."
+              body={
+                <div className="space-y-3">
+                  <p>Model your startup costs, revenue projections and break-even point based on your practice size, location and fee structure.</p>
                 </div>
-
-                {/* Calculation breakdown */}
-                <div className="lg:col-span-6 bg-[#1a1a1a] text-white rounded-xl p-6 space-y-4">
-                  <div className="flex justify-between items-baseline border-b border-neutral-800 pb-3">
-                    <span className="text-xs text-neutral-400 font-medium">Estimated Total Capital Required</span>
-                    <span className="text-2xl sm:text-3xl font-extrabold text-[#DFB04E]">
-                      £{totalCapex.toLocaleString()}
-                    </span>
-                  </div>
-
-                  <div className="space-y-2 text-xs">
-                    <div className="flex justify-between text-neutral-300">
-                      <span>Architectural &amp; HTM 01-05 Fit-Out ({surgeryCount} rooms)</span>
-                      <span className="font-semibold text-white">£{fitoutCost.toLocaleString()}</span>
-                    </div>
-                    <div className="flex justify-between text-neutral-300">
-                      <span>Chairs, Compressor, Suction &amp; Digital Imaging</span>
-                      <span className="font-semibold text-white">£{equipCost.toLocaleString()}</span>
-                    </div>
-                    <div className="flex justify-between text-neutral-300">
-                      <span>Legal, Lease Negotiation &amp; CQC Application</span>
-                      <span className="font-semibold text-white">£{complianceLegal.toLocaleString()}</span>
-                    </div>
-                    <div className="flex justify-between text-neutral-300">
-                      <span>Pre-Opening Working Capital (Staffing buffer)</span>
-                      <span className="font-semibold text-white">£{workingCapital.toLocaleString()}</span>
-                    </div>
-                    <div className="flex justify-between text-neutral-300">
-                      <span>Contingency Buffer (8%)</span>
-                      <span className="font-semibold text-white">£{contingency.toLocaleString()}</span>
-                    </div>
-                  </div>
-
-                  <div className="pt-3 border-t border-neutral-800 flex justify-between items-center text-[10px] text-neutral-400">
-                    <span>90% of equipment &amp; fit-out can be funded via asset finance.</span>
-                    <span className="text-[#DFB04E] font-semibold">Tier 1 Lenders inside DS</span>
-                  </div>
-                </div>
-              </div>
-            </div>
+              }
+              footer="Make the numbers work before you spend the money."
+              imageSrc="/portal-calc.png"
+              imageAlt="Cost Calculator — startup cost estimator"
+              cardBg="#7B5214"
+            />
           )}
 
           {/* TAB 5: Resources */}
           {activeTab === 'Resources' && (
-            <div className="bg-white border border-neutral-200 rounded-2xl p-6 sm:p-8 shadow-sm space-y-6 animate-in fade-in">
-              <div className="border-b border-neutral-100 pb-4">
-                <h3 className="text-xl font-bold text-neutral-900">100+ Downloadable SOPs, Policies &amp; Spreadsheets</h3>
-                <p className="text-xs text-neutral-500">Battle-tested templates that passed real CQC inspections and secured Tier 1 bank funding.</p>
-              </div>
-
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                {[
-                  { title: 'CQC Registered Manager Audit Pack', type: 'Word / PDF', desc: '85 statutory health & safety, infection control, and fire safety risk assessments.' },
-                  { title: '5-Year Squat Bank Loan Financial Forecast', type: 'Excel Spreadsheet', desc: 'Pre-formatted cash flow, balance sheet, and EBITDA projections favored by lenders.' },
-                  { title: 'Dental Fit-Out Tender & Snagging Protocol', type: 'Checklist', desc: 'Protect yourself with milestone release schedules and liquidated defect clauses.' },
-                  { title: 'Principal & Associate Contract Templates', type: 'Legal Agreement', desc: 'BDA-compliant agreements drafted specifically for high-performing private squat clinics.' }
-                ].map((res, idx) => (
-                  <div key={idx} className="p-4 rounded-xl border border-neutral-200 bg-[#FAF7F2] flex items-start gap-3">
-                    <FileText className="w-5 h-5 text-[#C58F28] shrink-0 mt-0.5" />
-                    <div className="flex-1">
-                      <div className="flex items-center justify-between">
-                        <h4 className="font-bold text-xs text-neutral-900">{res.title}</h4>
-                        <span className="text-[9px] bg-neutral-200 text-neutral-700 px-1.5 py-0.5 rounded font-mono">{res.type}</span>
-                      </div>
-                      <p className="text-[11px] text-neutral-600 mt-1">{res.desc}</p>
-                      <button
-                        onClick={onOpenChecklistModal}
-                        className="text-[10px] font-bold text-[#A4741B] hover:underline mt-2 inline-block cursor-pointer"
-                      >
-                        Download Template →
-                      </button>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
+            <FeatureTabCard
+              label="RESOURCE LIBRARY"
+              heading="Stop searching. Start using."
+              body={
+                <div className="space-y-3">
+                  <p>Get instant access to 100+ professionally prepared resources designed specifically for squat practice owners.</p>
+                  <p style={{ fontWeight: 700 }}>Resource examples</p>
+                  <ul className="space-y-1 list-disc list-inside">
+                    {['Lease negotiation checklists','CQC registration timelines','HTM 01-05 guides','Business plan templates','Supplier briefing documents','Equipment specifications','Practice setup checklists'].map(i => (
+                      <li key={i}>{i}</li>
+                    ))}
+                  </ul>
+                </div>
+              }
+              footer="Everything you need. Ready when you need it."
+              imageSrc="/portal-resources.png"
+              imageAlt="Resource Library — 100+ templates and guides"
+              cardBg="#7B5214"
+            />
           )}
 
           {/* TAB 6: Supplier Vetting */}
           {activeTab === 'Supplier Vetting' && (
-            <div className="bg-white border border-neutral-200 rounded-2xl p-6 sm:p-8 shadow-sm space-y-6 animate-in fade-in">
-              <div className="border-b border-neutral-100 pb-4">
-                <h3 className="text-xl font-bold text-neutral-900">Vetted Supplier Directory</h3>
-                <p className="text-xs text-neutral-500">Never pay retail or risk hiring an unqualified contractor who has never built a decon room.</p>
-              </div>
-
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-                {SUPPLIERS.map((sup) => (
-                  <div key={sup.id} className="p-4 rounded-xl border border-neutral-200 bg-[#FAF7F2] space-y-2">
-                    <div className="flex items-center justify-between">
-                      <span className="text-2xl">{sup.icon}</span>
-                      <span className="text-[10px] bg-[#E8CA82]/30 text-[#A4741B] px-2 py-0.5 rounded font-semibold border border-[#E8CA82]/50">
-                        {sup.tier}
-                      </span>
-                    </div>
-                    <h4 className="font-bold text-sm text-neutral-900">{sup.name} ({sup.sub})</h4>
-                    <p className="text-[11px] text-neutral-600 leading-snug">{sup.description}</p>
-                    <div className="text-[10px] text-emerald-800 bg-emerald-50 p-2 rounded font-medium border border-emerald-100">
-                      ★ {sup.perks}
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
+            <FeatureTabCard
+              label="VETTED SUPPLIERS"
+              heading="Find people you can actually trust."
+              body={
+                <div className="space-y-3">
+                  <p>Skip the cold searches and endless supplier comparisons.</p>
+                  <p>Discover fit-out companies, equipment suppliers, finance providers, architects and compliance specialists who have been reviewed and used by real squat practice owners.</p>
+                </div>
+              }
+              footer="Less searching. Fewer wrong turns. Better decisions."
+              imageSrc="/portal-vetting.png"
+              imageAlt="Vetted Supplier Directory"
+              cardBg="#7B5214"
+            />
           )}
 
           {/* TAB 7: Community */}
           {activeTab === 'Community' && (
-            <div className="bg-white border border-neutral-200 rounded-2xl p-6 sm:p-8 shadow-sm space-y-6 animate-in fade-in">
-              <div className="border-b border-neutral-100 pb-4">
-                <h3 className="text-xl font-bold text-neutral-900">Private Clinical Owner Community</h3>
-                <p className="text-xs text-neutral-500">Connect with dentists who have already opened their doors or are currently in build.</p>
-              </div>
-
-              <div className="space-y-3">
-                {[
-                  { author: 'Dr. Michael Chen (BDS)', time: '2 hours ago', title: 'Landlord asking for personal guarantee on 10-year lease - how did you negotiate this?', replies: 14, tags: ['Legal', 'Lease'] },
-                  { author: 'Dr. Rachel Hughes', time: 'Yesterday', title: 'HTM 01-05 Decontamination layout passed first inspection! Here is what the inspector focused on:', replies: 28, tags: ['CQC', 'Compliance'] },
-                  { author: 'Dr. Tariq Mahmood', time: '3 days ago', title: 'Cost per acquisition on Google Ads for private Invisalign cases in Manchester', replies: 19, tags: ['Marketing'] }
-                ].map((post, idx) => (
-                  <div key={idx} className="p-4 rounded-xl border border-neutral-200 bg-[#FAF7F2] flex items-center justify-between hover:border-[#C58F28] transition-colors cursor-pointer" onClick={onOpenChecklistModal}>
-                    <div className="space-y-1">
-                      <div className="flex items-center gap-2 text-[10px] text-neutral-500">
-                        <span className="font-semibold text-neutral-800">{post.author}</span>
-                        <span>•</span>
-                        <span>{post.time}</span>
-                        {post.tags.map((t, i) => (
-                          <span key={i} className="bg-neutral-200/80 text-neutral-700 px-1.5 py-0.2 rounded text-[9px]">{t}</span>
-                        ))}
-                      </div>
-                      <h4 className="text-xs font-bold text-neutral-900">{post.title}</h4>
-                    </div>
-                    <span className="text-xs font-semibold text-[#A4741B] bg-white border border-neutral-200 px-2.5 py-1 rounded-md shrink-0">
-                      {post.replies} replies
-                    </span>
-                  </div>
-                ))}
-              </div>
-            </div>
+            <FeatureTabCard
+              label="COMMUNITY"
+              heading="You don't have to build your practice alone."
+              body={
+                <div className="space-y-3">
+                  <p>Join a private community of dentists at every stage of the squat journey.</p>
+                  <p>Connect with people who have already opened their practices, dentists currently building theirs, and others who are standing exactly where you are today.</p>
+                </div>
+              }
+              footer="Ask questions. Share progress. Learn from people who've done it."
+              imageSrc="/portal-community.png"
+              imageAlt="Community — private clinical owner community"
+              cardBg="#7B5214"
+            />
           )}
         </div>
       </div>

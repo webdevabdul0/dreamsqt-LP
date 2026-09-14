@@ -84,7 +84,6 @@ export default function App() {
         <PortalFeatures
           activeTab={activeFeatureTab}
           setActiveTab={setActiveFeatureTab}
-          onOpenChecklistModal={() => setActiveModal('checklist')}
         />
 
         {/* 8. Pricing Section (£19.99/mo) with Live Readiness Snapshot */}
