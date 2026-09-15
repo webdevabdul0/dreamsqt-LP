@@ -25,7 +25,7 @@ export function useGsapAnimations() {
         );
       });
 
-      // ── Headings: fade-up in + subtle fade-out on leave ──────────
+      // ── Headings: fade-up in, stay visible ───────────────────────
       gsap.utils.toArray<HTMLElement>('[data-animate-heading]').forEach((el) => {
         gsap.fromTo(
           el,
@@ -33,10 +33,6 @@ export function useGsapAnimations() {
           { opacity: 1, y: 0, duration: 0.7, ease: 'power2.out',
             scrollTrigger: { trigger: el, start: 'top 88%', once: true } }
         );
-        gsap.to(el, {
-          opacity: 0, y: -14, ease: 'none',
-          scrollTrigger: { trigger: el, start: 'bottom 18%', end: 'bottom -8%', scrub: 1.2 }
-        });
       });
 
       // ── Images: fade in only, stay visible ───────────────────────
