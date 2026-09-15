@@ -4,6 +4,8 @@
  */
 
 import React, { useState } from 'react';
+import { useSmoothScroll } from './hooks/useSmoothScroll';
+import { useGsapAnimations } from './hooks/useGsapAnimations';
 import { TopBar } from './components/TopBar';
 import { Header } from './components/Header';
 import { Hero } from './components/Hero';
@@ -19,6 +21,9 @@ import { Footer } from './components/Footer';
 import { Modals } from './components/Modals';
 
 export default function App() {
+  useSmoothScroll();
+  useGsapAnimations();
+
   const [activeFeatureTab, setActiveFeatureTab] = useState('AI Location Finder');
   const [activeModal, setActiveModal] = useState<
     'calculator' | 'event' | 'resources' | 'blogs' | 'contact' | 'login' | 'checklist' | null
@@ -49,54 +54,62 @@ export default function App() {
 
   return (
     <div className="min-h-screen bg-[#FAF7F2] text-[#1E1E1E] flex flex-col font-sans selection:bg-[#C58F28] selection:text-white">
-      {/* 1. Top Utility Contact Bar */}
-      <TopBar onContactClick={() => setActiveModal('contact')} />
-
-      {/* 2. Main Navigation Header */}
-      <Header
-        onOpenCalculator={() => setActiveModal('calculator')}
-        onOpenEvent={() => setActiveModal('event')}
-        onOpenResources={() => setActiveModal('resources')}
-        onOpenBlogs={() => setActiveModal('blogs')}
-        onOpenContact={() => setActiveModal('contact')}
-        onOpenLogin={() => setActiveModal('login')}
-        onScrollToPortal={scrollToPortal}
-      />
+      {/* Navbar hidden */}
+      {/* <TopBar onContactClick={() => setActiveModal('contact')} /> */}
+      {/* <Header ... /> */}
 
       {/* Main Content Sections */}
       <main className="flex-1">
-        {/* 3. Hero Section with Vetted Suppliers Preview Window */}
-        <Hero onJoinClick={scrollToPricing} />
+        {/* 3. Hero */}
+        <div data-hero>
+          <Hero onJoinClick={scrollToPricing} />
+        </div>
 
-        {/* 4. Problem & Frustration Contrast */}
-        <ProblemSection />
+        {/* 4. Problem */}
+        <div data-animate>
+          <ProblemSection />
+        </div>
 
-        {/* 5. Core Product Dashboard (Dark Theme) */}
-        <DashboardPreview
-          onSelectFeatureTab={handleFeatureTabSelect}
-          onOpenChecklistModal={() => setActiveModal('checklist')}
-        />
+        {/* 5. Dashboard */}
+        <div data-animate>
+          <DashboardPreview
+            onSelectFeatureTab={handleFeatureTabSelect}
+            onOpenChecklistModal={() => setActiveModal('checklist')}
+          />
+        </div>
 
-        {/* 6. Founder Credibility & Real Experience */}
-        <FounderSection onExplorePortal={scrollToPortal} />
+        {/* 6. Founder */}
+        <div data-animate>
+          <FounderSection onExplorePortal={scrollToPortal} />
+        </div>
 
-        {/* 7. Tabbed Portal Feature Suite (AI Location, Courses, Journey, Calc, Resources, etc.) */}
-        <PortalFeatures
-          activeTab={activeFeatureTab}
-          setActiveTab={setActiveFeatureTab}
-        />
+        {/* 7. Portal Features */}
+        <div data-animate>
+          <PortalFeatures
+            activeTab={activeFeatureTab}
+            setActiveTab={setActiveFeatureTab}
+          />
+        </div>
 
-        {/* 8. Pricing Section (£19.99/mo) with Live Readiness Snapshot */}
-        <PricingSection onJoinClick={() => setActiveModal('login')} />
+        {/* 8. Pricing */}
+        <div data-animate>
+          <PricingSection onJoinClick={() => setActiveModal('login')} />
+        </div>
 
-        {/* 9. Risk Breakdown: £20,000+, 4 Months, 10+ Years */}
-        <RiskSection />
+        {/* 9. Risk */}
+        <div data-animate>
+          <RiskSection />
+        </div>
 
-        {/* 10. Warm Gold CTA Banner with Dental Studio Interior Photo */}
-        <BannerCTA onJoinClick={() => setActiveModal('login')} />
+        {/* 10. Banner CTA */}
+        <div data-animate>
+          <BannerCTA onJoinClick={() => setActiveModal('login')} />
+        </div>
 
-        {/* 11. Stop Searching. Start Building. */}
-        <StopSearching />
+        {/* 11. Stop Searching */}
+        <div data-animate>
+          <StopSearching />
+        </div>
       </main>
 
       {/* 12. Site Footer with Newsletter and Watermark */}

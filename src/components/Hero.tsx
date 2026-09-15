@@ -16,26 +16,26 @@ export const Hero: React.FC<HeroProps> = ({ onJoinClick }) => {
       <div className="max-w-7xl mx-auto px-6 flex items-center gap-12">
         {/* Left Column: Copy */}
         <div className="w-full lg:w-[640px] shrink-0 space-y-6 relative z-10">
-          <GradientPill>DREAM SQUAT PORTAL</GradientPill>
+          <div data-hero-item><GradientPill>DREAM SQUAT PORTAL</GradientPill></div>
 
-          <h1
+          <h1 data-hero-item
             className="leading-tight"
             style={{ fontFamily: '"SF Pro Display", "SF Pro", -apple-system, BlinkMacSystemFont, sans-serif', fontSize: '60px', fontWeight: 700, color: '#131313' }}
           >
             <span style={{ color: '#C58F28' }}>Everything</span> you need to open your squat dental practice.
           </h1>
 
-          <p style={{ color: '#131313', fontSize: '24px', fontWeight: 400 }}>
+          <p data-hero-item style={{ color: '#131313', fontSize: '24px', fontWeight: 400 }}>
             One place. One price. No guesswork.
           </p>
 
-          <p style={{ color: '#131313', fontSize: '16px', fontWeight: 400 }} className="max-w-lg leading-relaxed">
+          <p data-hero-item style={{ color: '#131313', fontSize: '16px', fontWeight: 400 }} className="max-w-lg leading-relaxed">
             You've got the clinical skills. You've got the ambition.
             <br />
             What you've been missing is a clear roadmap to turn your vision into a successful dental practice.
           </p>
 
-          <div className="pt-2">
+          <div data-hero-item className="pt-2">
             <button
               onClick={onJoinClick}
               id="hero-join-btn"
@@ -48,7 +48,7 @@ export const Hero: React.FC<HeroProps> = ({ onJoinClick }) => {
         </div>
 
         {/* Right: Portal screenshot — grows to fill remaining space and bleeds off-screen */}
-        <div className="hidden lg:block flex-1 min-w-0">
+        <div data-hero-item className="hidden lg:block flex-1 min-w-0">
           <img
             src="/hero.png"
             alt="Dream Squat Portal"
