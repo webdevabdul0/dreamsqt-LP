@@ -39,7 +39,7 @@ export function useGsapAnimations() {
         });
       });
 
-      // ── Images: fade in + subtle fade-out on leave ───────────────
+      // ── Images: fade in only, stay visible ───────────────────────
       gsap.utils.toArray<HTMLElement>('[data-animate-img]').forEach((el) => {
         gsap.fromTo(
           el,
@@ -47,10 +47,6 @@ export function useGsapAnimations() {
           { opacity: 1, duration: 1, ease: 'power2.out',
             scrollTrigger: { trigger: el, start: 'top 90%', once: true } }
         );
-        gsap.to(el, {
-          opacity: 0, ease: 'none',
-          scrollTrigger: { trigger: el, start: 'bottom 15%', end: 'bottom -12%', scrub: 1.2 }
-        });
       });
 
       // ── Stagger children: cards side-by-side or heading→text ─────

@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useState, useEffect, useRef } from 'react';
+import { gsap } from 'gsap';
 import { GradientPill } from './GradientPill';
 import { FeatureTabCard } from './FeatureTabCard';
 
@@ -10,15 +11,213 @@ const ICON_RESOURCES = '/icon-resources.svg';
 const ICON_VETTING = '/icon-vetting.svg';
 const ICON_COMMUNITY = '/icon-community.svg';
 
+const TAB_ORDER = [
+  'AI Location Finder',
+  'Courses',
+  'My Build Journey',
+  'Cost Calculator',
+  'Resources',
+  'Supplier Vetting',
+  'Community',
+];
+
 interface PortalFeaturesProps {
   activeTab: string;
   setActiveTab: (tab: string) => void;
+}
+
+function renderTabCard(tab: string) {
+  switch (tab) {
+    case 'AI Location Finder':
+      return (
+        <FeatureTabCard
+          label="AI LOCATION FINDER"
+          heading="Find the right location before you commit."
+          body={
+            <div className="space-y-3">
+              <p>Dream Squat analyses local demographics, competition, NHS capacity, deprivation data and growth signals then uses AI to help you understand whether the location is worth pursuing and whether a private or mixed model makes sense.</p>
+              <div className="flex gap-6 pt-1">
+                <div className="space-y-2 text-sm opacity-80">
+                  {['01','02','03','04'].map(n => <p key={n}>{n}</p>)}
+                </div>
+                <div className="space-y-2 text-sm">
+                  {['Postcode search','Map analysis','AI viability score','Recommendation'].map(i => <p key={i}>{i}</p>)}
+                </div>
+              </div>
+            </div>
+          }
+          imageSrc="/portal-ai-location.png"
+          imageAlt="AI Location Finder — city map with glowing location pin"
+          cardBg="#7B5214"
+        />
+      );
+    case 'Courses':
+      return (
+        <FeatureTabCard
+          label="5-MODULE COURSE"
+          heading="A clear roadmap from zero to open."
+          body={
+            <div className="space-y-3">
+              <p>Five practical modules, filmed by Saba and built around the exact framework she uses when mentoring dentists.</p>
+              <p>Short, focused lessons. Real examples. Real case studies. No unnecessary theory.</p>
+              <p style={{ fontWeight: 700 }}>The 5 Modules</p>
+              <div className="flex gap-5">
+                <div className="space-y-1 opacity-70">
+                  {['01','02','03','04','05'].map(n => <p key={n}>{n}</p>)}
+                </div>
+                <div className="space-y-1">
+                  {['Finding the Right Location','Business Planning & Fundamentals','CQC Registration','Fit-Out & Equipment','Social Media & Marketing'].map(i => <p key={i}>{i}</p>)}
+                </div>
+              </div>
+            </div>
+          }
+          footer="Learn what matters. Skip what doesn't."
+          imageSrc="/portal-courses.png"
+          imageAlt="Courses — 5-module squat masterclass"
+          cardBg="#7B5214"
+        />
+      );
+    case 'My Build Journey':
+      return (
+        <FeatureTabCard
+          label="BUILD JOURNEY"
+          heading="Build your practice. Document the journey."
+          body={
+            <div className="space-y-3">
+              <p>Your squat isn't just a project. It's something you'll want to remember.</p>
+              <p>The Build Journey lets you track milestones, record decisions, manage your budget and document your progress from day one.</p>
+            </div>
+          }
+          footer="One day, you'll look back and see exactly how you built something from nothing."
+          imageSrc="/portal-journey.png"
+          imageAlt="My Build Journey — practice build roadmap"
+          cardBg="#7B5214"
+        />
+      );
+    case 'Cost Calculator':
+      return (
+        <FeatureTabCard
+          label="COST CALCULATOR"
+          heading="Know your numbers before you commit."
+          body={
+            <div className="space-y-3">
+              <p>Model your startup costs, revenue projections and break-even point based on your practice size, location and fee structure.</p>
+            </div>
+          }
+          footer="Make the numbers work before you spend the money."
+          imageSrc="/portal-calc.png"
+          imageAlt="Cost Calculator — startup cost estimator"
+          cardBg="#7B5214"
+        />
+      );
+    case 'Resources':
+      return (
+        <FeatureTabCard
+          label="RESOURCE LIBRARY"
+          heading="Stop searching. Start using."
+          body={
+            <div className="space-y-3">
+              <p>Get instant access to 100+ professionally prepared resources designed specifically for squat practice owners.</p>
+              <p style={{ fontWeight: 700 }}>Resource examples</p>
+              <ul className="space-y-1 list-disc list-inside">
+                {['Lease negotiation checklists','CQC registration timelines','HTM 01-05 guides','Business plan templates','Supplier briefing documents','Equipment specifications','Practice setup checklists'].map(i => (
+                  <li key={i}>{i}</li>
+                ))}
+              </ul>
+            </div>
+          }
+          footer="Everything you need. Ready when you need it."
+          imageSrc="/portal-resources.png"
+          imageAlt="Resource Library — 100+ templates and guides"
+          cardBg="#7B5214"
+        />
+      );
+    case 'Supplier Vetting':
+      return (
+        <FeatureTabCard
+          label="VETTED SUPPLIERS"
+          heading="Find people you can actually trust."
+          body={
+            <div className="space-y-3">
+              <p>Skip the cold searches and endless supplier comparisons.</p>
+              <p>Discover fit-out companies, equipment suppliers, finance providers, architects and compliance specialists who have been reviewed and used by real squat practice owners.</p>
+            </div>
+          }
+          footer="Less searching. Fewer wrong turns. Better decisions."
+          imageSrc="/portal-vetting.png"
+          imageAlt="Vetted Supplier Directory"
+          cardBg="#7B5214"
+        />
+      );
+    case 'Community':
+      return (
+        <FeatureTabCard
+          label="COMMUNITY"
+          heading="You don't have to build your practice alone."
+          body={
+            <div className="space-y-3">
+              <p>Join a private community of dentists at every stage of the squat journey.</p>
+              <p>Connect with people who have already opened their practices, dentists currently building theirs, and others who are standing exactly where you are today.</p>
+            </div>
+          }
+          footer="Ask questions. Share progress. Learn from people who've done it."
+          imageSrc="/portal-community.png"
+          imageAlt="Community — private clinical owner community"
+          cardBg="#7B5214"
+        />
+      );
+    default:
+      return null;
+  }
 }
 
 export const PortalFeatures: React.FC<PortalFeaturesProps> = ({
   activeTab,
   setActiveTab,
 }) => {
+  const [displayTab, setDisplayTab] = useState(activeTab);
+  const [exitingTab, setExitingTab] = useState<string | null>(null);
+  const animating = useRef(false);
+  const pendingTab = useRef<string | null>(null);
+  const enteringRef = useRef<HTMLDivElement>(null);
+  const exitingRef = useRef<HTMLDivElement>(null);
+
+  function startTransition(from: string, to: string) {
+    const dir = TAB_ORDER.indexOf(to) >= TAB_ORDER.indexOf(from) ? 1 : -1;
+    setExitingTab(from);
+    setDisplayTab(to);
+    animating.current = true;
+
+    requestAnimationFrame(() => {
+      requestAnimationFrame(() => {
+        const entering = enteringRef.current;
+        const exiting = exitingRef.current;
+        if (!entering || !exiting) { animating.current = false; return; }
+
+        gsap.set(entering, { x: `${dir * 100}%`, opacity: 0 });
+        gsap.to(exiting, { x: `${dir * -100}%`, opacity: 0, duration: 0.45, ease: 'power2.inOut' });
+        gsap.to(entering, {
+          x: '0%', opacity: 1, duration: 0.45, ease: 'power2.inOut',
+          onComplete: () => {
+            setExitingTab(null);
+            animating.current = false;
+            if (pendingTab.current) {
+              const next = pendingTab.current;
+              pendingTab.current = null;
+              startTransition(to, next);
+            }
+          },
+        });
+      });
+    });
+  }
+
+  useEffect(() => {
+    if (activeTab === displayTab) return;
+    if (animating.current) { pendingTab.current = activeTab; return; }
+    startTransition(displayTab, activeTab);
+  }, [activeTab]);
+
   const tabs = [
     { id: 'AI Location Finder', label: 'AI Location Finder', iconSrc: ICON_AI },
     { id: 'Courses', label: 'Courses', iconSrc: ICON_COURSES },
@@ -41,6 +240,7 @@ export const PortalFeatures: React.FC<PortalFeaturesProps> = ({
         <div className="max-w-3xl space-y-5">
           <GradientPill>ONE PORTAL. EVERYTHING YOU NEED.</GradientPill>
           <h2
+            data-animate-heading
             className="leading-tight"
             style={{
               fontFamily: '"SF Pro Display", "SF Pro", -apple-system, BlinkMacSystemFont, sans-serif',
@@ -57,7 +257,7 @@ export const PortalFeatures: React.FC<PortalFeaturesProps> = ({
           </p>
         </div>
 
-        {/* Horizontal Tab Navigation */}
+        {/* Tab Navigation */}
         <div className="flex flex-wrap items-center gap-2">
           {tabs.map((tab) => {
             const isActive = activeTab === tab.id;
@@ -79,152 +279,18 @@ export const PortalFeatures: React.FC<PortalFeaturesProps> = ({
           })}
         </div>
 
-        {/* Tab Content Display — full width to match max-w-7xl container */}
-        <div>
-          {/* TAB 1: AI Location Finder */}
-          {activeTab === 'AI Location Finder' && (
-            <FeatureTabCard
-              label="AI LOCATION FINDER"
-              heading="Find the right location before you commit."
-              body={
-                <div className="space-y-3">
-                  <p>Dream Squat analyses local demographics, competition, NHS capacity, deprivation data and growth signals then uses AI to help you understand whether the location is worth pursuing and whether a private or mixed model makes sense.</p>
-                  <div className="flex gap-6 pt-1">
-                    <div className="space-y-2 text-sm opacity-80">
-                      {['01','02','03','04'].map(n => <p key={n}>{n}</p>)}
-                    </div>
-                    <div className="space-y-2 text-sm">
-                      {['Postcode search','Map analysis','AI viability score','Recommendation'].map(i => <p key={i}>{i}</p>)}
-                    </div>
-                  </div>
-                </div>
-              }
-              imageSrc="/portal-ai-location.png"
-              imageAlt="AI Location Finder — city map with glowing location pin"
-              cardBg="#7B5214"
-            />
+        {/* Sliding tab content */}
+        <div style={{ position: 'relative', overflow: 'hidden', height: '620px' }}>
+          {/* Exiting card */}
+          {exitingTab && (
+            <div ref={exitingRef} style={{ position: 'absolute', inset: 0, width: '100%' }}>
+              {renderTabCard(exitingTab)}
+            </div>
           )}
-
-          {/* TAB 2: Courses */}
-          {activeTab === 'Courses' && (
-            <FeatureTabCard
-              label="5-MODULE COURSE"
-              heading="A clear roadmap from zero to open."
-              body={
-                <div className="space-y-3">
-                  <p>Five practical modules, filmed by Saba and built around the exact framework she uses when mentoring dentists.</p>
-                  <p>Short, focused lessons. Real examples. Real case studies. No unnecessary theory.</p>
-                  <p style={{ fontWeight: 700 }}>The 5 Modules</p>
-                  <div className="flex gap-5">
-                    <div className="space-y-1 opacity-70">
-                      {['01','02','03','04','05'].map(n => <p key={n}>{n}</p>)}
-                    </div>
-                    <div className="space-y-1">
-                      {['Finding the Right Location','Business Planning & Fundamentals','CQC Registration','Fit-Out & Equipment','Social Media & Marketing'].map(i => <p key={i}>{i}</p>)}
-                    </div>
-                  </div>
-                </div>
-              }
-              footer="Learn what matters. Skip what doesn't."
-              imageSrc="/portal-courses.png"
-              imageAlt="Courses — 5-module squat masterclass"
-              cardBg="#7B5214"
-            />
-          )}
-
-          {/* TAB 3: My Build Journey */}
-          {activeTab === 'My Build Journey' && (
-            <FeatureTabCard
-              label="BUILD JOURNEY"
-              heading="Build your practice. Document the journey."
-              body={
-                <div className="space-y-3">
-                  <p>Your squat isn't just a project. It's something you'll want to remember.</p>
-                  <p>The Build Journey lets you track milestones, record decisions, manage your budget and document your progress from day one.</p>
-                </div>
-              }
-              footer="One day, you'll look back and see exactly how you built something from nothing."
-              imageSrc="/portal-journey.png"
-              imageAlt="My Build Journey — practice build roadmap"
-              cardBg="#7B5214"
-            />
-          )}
-
-          {/* TAB 4: Cost Calculator */}
-          {activeTab === 'Cost Calculator' && (
-            <FeatureTabCard
-              label="COST CALCULATOR"
-              heading="Know your numbers before you commit."
-              body={
-                <div className="space-y-3">
-                  <p>Model your startup costs, revenue projections and break-even point based on your practice size, location and fee structure.</p>
-                </div>
-              }
-              footer="Make the numbers work before you spend the money."
-              imageSrc="/portal-calc.png"
-              imageAlt="Cost Calculator — startup cost estimator"
-              cardBg="#7B5214"
-            />
-          )}
-
-          {/* TAB 5: Resources */}
-          {activeTab === 'Resources' && (
-            <FeatureTabCard
-              label="RESOURCE LIBRARY"
-              heading="Stop searching. Start using."
-              body={
-                <div className="space-y-3">
-                  <p>Get instant access to 100+ professionally prepared resources designed specifically for squat practice owners.</p>
-                  <p style={{ fontWeight: 700 }}>Resource examples</p>
-                  <ul className="space-y-1 list-disc list-inside">
-                    {['Lease negotiation checklists','CQC registration timelines','HTM 01-05 guides','Business plan templates','Supplier briefing documents','Equipment specifications','Practice setup checklists'].map(i => (
-                      <li key={i}>{i}</li>
-                    ))}
-                  </ul>
-                </div>
-              }
-              footer="Everything you need. Ready when you need it."
-              imageSrc="/portal-resources.png"
-              imageAlt="Resource Library — 100+ templates and guides"
-              cardBg="#7B5214"
-            />
-          )}
-
-          {/* TAB 6: Supplier Vetting */}
-          {activeTab === 'Supplier Vetting' && (
-            <FeatureTabCard
-              label="VETTED SUPPLIERS"
-              heading="Find people you can actually trust."
-              body={
-                <div className="space-y-3">
-                  <p>Skip the cold searches and endless supplier comparisons.</p>
-                  <p>Discover fit-out companies, equipment suppliers, finance providers, architects and compliance specialists who have been reviewed and used by real squat practice owners.</p>
-                </div>
-              }
-              footer="Less searching. Fewer wrong turns. Better decisions."
-              imageSrc="/portal-vetting.png"
-              imageAlt="Vetted Supplier Directory"
-              cardBg="#7B5214"
-            />
-          )}
-
-          {/* TAB 7: Community */}
-          {activeTab === 'Community' && (
-            <FeatureTabCard
-              label="COMMUNITY"
-              heading="You don't have to build your practice alone."
-              body={
-                <div className="space-y-3">
-                  <p>Join a private community of dentists at every stage of the squat journey.</p>
-                  <p>Connect with people who have already opened their practices, dentists currently building theirs, and others who are standing exactly where you are today.</p>
-                </div>
-              }
-              footer="Ask questions. Share progress. Learn from people who've done it."
-              imageSrc="/portal-community.png"
-              imageAlt="Community — private clinical owner community"
-              cardBg="#7B5214"
-            />
-          )}
+          {/* Entering / current card */}
+          <div ref={enteringRef} style={{ position: 'absolute', inset: 0, width: '100%' }}>
+            {renderTabCard(displayTab)}
+          </div>
         </div>
       </div>
     </section>
