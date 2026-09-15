@@ -30,7 +30,6 @@ export const ProblemSection: React.FC = () => {
                 <GradientPill>THE PROBLEM</GradientPill>
               </div>
               <h2
-                data-animate-heading
                 className="leading-tight"
                 style={{ fontFamily: '"SF Pro Display", "SF Pro", -apple-system, BlinkMacSystemFont, sans-serif', fontSize: '60px', fontWeight: 700, color: '#131313' }}
               >
@@ -45,7 +44,7 @@ export const ProblemSection: React.FC = () => {
             </div>
 
             {/* Tag pills */}
-            <div data-animate-stagger className="flex flex-wrap gap-2 items-start">
+            <div className="flex flex-wrap gap-2 items-start">
               {[
                 'Google searches.',
                 'Conflicting advice',
