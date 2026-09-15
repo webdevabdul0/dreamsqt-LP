@@ -7,15 +7,66 @@ gsap.registerPlugin(ScrollTrigger);
 export function useGsapAnimations() {
   useEffect(() => {
     const ctx = gsap.context(() => {
-      // Fade-up on scroll for all [data-animate] elements
+
+      // ── Hero entrance (fires on mount, staggered) ──────────────────
+      gsap.fromTo(
+        '[data-hero] [data-hero-item]',
+        { opacity: 0, y: 36 },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 0.9,
+          ease: 'power3.out',
+          stagger: 0.15,
+          delay: 0.1,
+        }
+      );
+
+      // ── Section wrapper: fade-up in, fade-out as it leaves ─────────
       gsap.utils.toArray<HTMLElement>('[data-animate]').forEach((el) => {
+        // Fade in
         gsap.fromTo(
           el,
-          { opacity: 0, y: 48 },
+          { opacity: 0, y: 50 },
           {
             opacity: 1,
             y: 0,
-            duration: 0.9,
+            duration: 1,
+            ease: 'power3.out',
+            scrollTrigger: {
+              trigger: el,
+              start: 'top 90%',
+              end: 'top 30%',
+              scrub: false,
+              once: true,
+            },
+          }
+        );
+
+        // Subtle fade-out when leaving viewport upward
+        gsap.to(el, {
+          opacity: 0.15,
+          y: -30,
+          ease: 'power2.in',
+          scrollTrigger: {
+            trigger: el,
+            start: 'bottom 5%',
+            end: 'bottom -20%',
+            scrub: true,
+          },
+        });
+      });
+
+      // ── Headings: slide up with slight scale ───────────────────────
+      gsap.utils.toArray<HTMLElement>('[data-animate-heading]').forEach((el) => {
+        gsap.fromTo(
+          el,
+          { opacity: 0, y: 32, scale: 0.97 },
+          {
+            opacity: 1,
+            y: 0,
+            scale: 1,
+            duration: 0.85,
             ease: 'power3.out',
             scrollTrigger: {
               trigger: el,
@@ -26,18 +77,18 @@ export function useGsapAnimations() {
         );
       });
 
-      // Stagger children inside [data-animate-stagger]
+      // ── Stagger children inside [data-animate-stagger] ────────────
       gsap.utils.toArray<HTMLElement>('[data-animate-stagger]').forEach((container) => {
-        const children = gsap.utils.toArray<HTMLElement>(container.children as unknown as HTMLElement[]);
+        const children = Array.from(container.children) as HTMLElement[];
         gsap.fromTo(
           children,
           { opacity: 0, y: 40 },
           {
             opacity: 1,
             y: 0,
-            duration: 0.7,
+            duration: 0.75,
             ease: 'power3.out',
-            stagger: 0.12,
+            stagger: 0.13,
             scrollTrigger: {
               trigger: container,
               start: 'top 85%',
@@ -47,22 +98,26 @@ export function useGsapAnimations() {
         );
       });
 
-      // Hero entrance (no scroll trigger — fires on mount)
-      const hero = document.querySelector('[data-hero]');
-      if (hero) {
+      // ── Cards: scale + fade ────────────────────────────────────────
+      gsap.utils.toArray<HTMLElement>('[data-animate-card]').forEach((el) => {
         gsap.fromTo(
-          gsap.utils.toArray<HTMLElement>('[data-hero] [data-hero-item]'),
-          { opacity: 0, y: 32 },
+          el,
+          { opacity: 0, y: 28, scale: 0.96 },
           {
             opacity: 1,
             y: 0,
-            duration: 0.85,
-            ease: 'power3.out',
-            stagger: 0.14,
-            delay: 0.1,
+            scale: 1,
+            duration: 0.75,
+            ease: 'power2.out',
+            scrollTrigger: {
+              trigger: el,
+              start: 'top 88%',
+              once: true,
+            },
           }
         );
-      }
+      });
+
     });
 
     return () => ctx.revert();

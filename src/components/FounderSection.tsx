@@ -30,6 +30,7 @@ export const FounderSection: React.FC<FounderSectionProps> = ({ onExplorePortal 
             <GradientPill>BUILT FROM EXPERIENCE</GradientPill>
 
             <h2
+              data-animate-heading
               className="leading-tight"
               style={{
                 fontFamily: '"SF Pro Display", "SF Pro", -apple-system, BlinkMacSystemFont, sans-serif',

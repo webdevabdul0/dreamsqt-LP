@@ -55,6 +55,7 @@ export const PricingSection: React.FC<PricingSectionProps> = ({ onJoinClick }) =
         <div className="text-center space-y-5">
           <GradientPill>SIMPLE PRICING</GradientPill>
           <h2
+            data-animate-heading
             className="leading-tight"
             style={{
               fontFamily: SF_PRO,

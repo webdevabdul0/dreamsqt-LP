@@ -54,9 +54,19 @@ export default function App() {
 
   return (
     <div className="min-h-screen bg-[#FAF7F2] text-[#1E1E1E] flex flex-col font-sans selection:bg-[#C58F28] selection:text-white">
-      {/* Navbar hidden */}
-      {/* <TopBar onContactClick={() => setActiveModal('contact')} /> */}
-      {/* <Header ... /> */}
+      {/* 1. Top Utility Contact Bar */}
+      <TopBar onContactClick={() => setActiveModal('contact')} />
+
+      {/* 2. Main Navigation Header */}
+      <Header
+        onOpenCalculator={() => setActiveModal('calculator')}
+        onOpenEvent={() => setActiveModal('event')}
+        onOpenResources={() => setActiveModal('resources')}
+        onOpenBlogs={() => setActiveModal('blogs')}
+        onOpenContact={() => setActiveModal('contact')}
+        onOpenLogin={() => setActiveModal('login')}
+        onScrollToPortal={scrollToPortal}
+      />
 
       {/* Main Content Sections */}
       <main className="flex-1">

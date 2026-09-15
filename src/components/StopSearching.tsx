@@ -6,7 +6,7 @@ export const StopSearching: React.FC = () => {
   return (
     <section style={{ background: '#131313', padding: '80px 0 80px' }}>
       <div style={{ textAlign: 'center', marginBottom: 48 }}>
-        <h2 style={{
+        <h2 data-animate-heading style={{
           fontFamily: sfPro,
           fontSize: 60,
           fontWeight: 700,

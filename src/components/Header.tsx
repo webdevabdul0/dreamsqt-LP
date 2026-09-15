@@ -35,8 +35,8 @@ export const Header: React.FC<HeaderProps> = ({
             <img src="/logo.svg" alt="Dream Squat" className="w-9 h-9 group-hover:scale-105 transition-transform" />
           </a>
 
-          {/* Desktop Nav immediately next to logo */}
-          <nav className="hidden md:flex items-center space-x-7" style={{ fontFamily: '"SF Pro", -apple-system, BlinkMacSystemFont, sans-serif', fontSize: '14px', fontWeight: 590, color: '#131313' }}>
+          {/* Desktop Nav immediately next to logo — hidden */}
+          <nav className="hidden" style={{ fontFamily: '"SF Pro", -apple-system, BlinkMacSystemFont, sans-serif', fontSize: '14px', fontWeight: 590, color: '#131313' }}>
           <button
             onClick={onScrollToPortal}
             className="text-[#C58F28] font-semibold hover:text-[#A4741B] transition-colors cursor-pointer"
@@ -92,76 +92,11 @@ export const Header: React.FC<HeaderProps> = ({
             Login
           </button>
 
-          {/* Mobile menu button */}
-          <button
-            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="md:hidden p-2 rounded-lg text-neutral-700 hover:bg-neutral-200/60 transition"
-            aria-label="Toggle menu"
-          >
-            {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
-          </button>
+          {/* Mobile menu button — hidden */}
         </div>
       </div>
 
-      {/* Mobile dropdown */}
-      {mobileMenuOpen && (
-        <div className="md:hidden bg-[#FAF7F2] border-b border-neutral-200 px-6 py-4 space-y-3 animate-in fade-in slide-in-from-top-2">
-          <button
-            onClick={() => {
-              onScrollToPortal();
-              setMobileMenuOpen(false);
-            }}
-            className="block w-full text-left py-2 text-sm font-semibold text-[#C58F28]"
-          >
-            DS Portal
-          </button>
-          <button
-            onClick={() => {
-              onOpenCalculator();
-              setMobileMenuOpen(false);
-            }}
-            className="block w-full text-left py-2 text-sm text-neutral-700 font-medium"
-          >
-            Comparison Calculator
-          </button>
-          <button
-            onClick={() => {
-              onOpenEvent();
-              setMobileMenuOpen(false);
-            }}
-            className="block w-full text-left py-2 text-sm text-neutral-700 font-medium"
-          >
-            Event
-          </button>
-          <button
-            onClick={() => {
-              onOpenResources();
-              setMobileMenuOpen(false);
-            }}
-            className="block w-full text-left py-2 text-sm text-neutral-700 font-medium"
-          >
-            Free Resources
-          </button>
-          <button
-            onClick={() => {
-              onOpenBlogs();
-              setMobileMenuOpen(false);
-            }}
-            className="block w-full text-left py-2 text-sm text-neutral-700 font-medium"
-          >
-            Blogs
-          </button>
-          <button
-            onClick={() => {
-              onOpenContact();
-              setMobileMenuOpen(false);
-            }}
-            className="block w-full text-left py-2 text-sm text-neutral-700 font-medium"
-          >
-            Contact Us
-          </button>
-        </div>
-      )}
+      {/* Mobile dropdown — hidden */}
     </header>
   );
 };
