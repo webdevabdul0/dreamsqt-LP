@@ -104,7 +104,7 @@ export const DashboardPreview: React.FC<DashboardPreviewProps> = ({
         </div>
 
         {/* Feature Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto">
+        <div data-animate-stagger className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto">
           <FeatureCard
             icon={<InfoOverloadIcon />}
             title="Information Overload"
