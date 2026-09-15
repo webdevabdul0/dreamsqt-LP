@@ -8,35 +8,60 @@ export function useGsapAnimations() {
   useEffect(() => {
     const ctx = gsap.context(() => {
 
-      // Hero entrance — fires once on load
+      // ── Hero entrance ────────────────────────────────────────────
       gsap.fromTo(
         '[data-hero] [data-hero-item]',
         { opacity: 0, y: 28 },
-        {
-          opacity: 1,
-          y: 0,
-          duration: 0.85,
-          ease: 'power2.out',
-          stagger: 0.12,
-          delay: 0.05,
-        }
+        { opacity: 1, y: 0, duration: 0.85, ease: 'power2.out', stagger: 0.12, delay: 0.05 }
       );
 
-      // All sections: simple fade-up, fires once
+      // ── Section wrappers: fade-up in, stay visible ───────────────
       gsap.utils.toArray<HTMLElement>('[data-animate]').forEach((el) => {
         gsap.fromTo(
           el,
           { opacity: 0, y: 40 },
+          { opacity: 1, y: 0, duration: 0.8, ease: 'power2.out',
+            scrollTrigger: { trigger: el, start: 'top 88%', once: true } }
+        );
+      });
+
+      // ── Headings: fade-up in + subtle fade-out on leave ──────────
+      gsap.utils.toArray<HTMLElement>('[data-animate-heading]').forEach((el) => {
+        gsap.fromTo(
+          el,
+          { opacity: 0, y: 20 },
+          { opacity: 1, y: 0, duration: 0.7, ease: 'power2.out',
+            scrollTrigger: { trigger: el, start: 'top 88%', once: true } }
+        );
+        gsap.to(el, {
+          opacity: 0, y: -14, ease: 'none',
+          scrollTrigger: { trigger: el, start: 'bottom 18%', end: 'bottom -8%', scrub: 1.2 }
+        });
+      });
+
+      // ── Images: fade in + subtle fade-out on leave ───────────────
+      gsap.utils.toArray<HTMLElement>('[data-animate-img]').forEach((el) => {
+        gsap.fromTo(
+          el,
+          { opacity: 0 },
+          { opacity: 1, duration: 1, ease: 'power2.out',
+            scrollTrigger: { trigger: el, start: 'top 90%', once: true } }
+        );
+        gsap.to(el, {
+          opacity: 0, ease: 'none',
+          scrollTrigger: { trigger: el, start: 'bottom 15%', end: 'bottom -12%', scrub: 1.2 }
+        });
+      });
+
+      // ── Stagger children: cards side-by-side or heading→text ─────
+      gsap.utils.toArray<HTMLElement>('[data-animate-stagger]').forEach((container) => {
+        const children = Array.from(container.children) as HTMLElement[];
+        gsap.fromTo(
+          children,
+          { opacity: 0, y: 30 },
           {
-            opacity: 1,
-            y: 0,
-            duration: 0.8,
-            ease: 'power2.out',
-            scrollTrigger: {
-              trigger: el,
-              start: 'top 88%',
-              once: true,
-            },
+            opacity: 1, y: 0, duration: 0.65, ease: 'power2.out', stagger: 0.12,
+            scrollTrigger: { trigger: container, start: 'top 86%', once: true }
           }
         );
       });

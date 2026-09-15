@@ -22,6 +22,7 @@ export const BannerCTA: React.FC<BannerCTAProps> = ({ onJoinClick }) => {
       >
         {/* Left content — x=130, y=54, w=599 */}
         <div
+          data-animate-stagger
           style={{
             position: 'absolute',
             left: '64px',
@@ -146,6 +147,7 @@ export const BannerCTA: React.FC<BannerCTAProps> = ({ onJoinClick }) => {
 
         {/* Right image — x=780, y=16, w=564, h=529 */}
         <div
+          data-animate-img
           style={{
             position: 'absolute',
             right: '24px',

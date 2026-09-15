@@ -5,8 +5,8 @@ const sfPro = '"SF Pro Display", "SF Pro", -apple-system, BlinkMacSystemFont, sa
 export const StopSearching: React.FC = () => {
   return (
     <section style={{ background: '#131313', padding: '80px 0 80px' }}>
-      <div style={{ textAlign: 'center', marginBottom: 48 }}>
-        <h2 style={{
+      <div data-animate-stagger style={{ textAlign: 'center', marginBottom: 48 }}>
+        <h2 data-animate-heading style={{
           fontFamily: sfPro,
           fontSize: 60,
           fontWeight: 700,
@@ -30,7 +30,7 @@ export const StopSearching: React.FC = () => {
         </p>
       </div>
 
-      <div style={{ maxWidth: 1280, margin: '0 auto', padding: '0 24px' }}>
+      <div data-animate-img style={{ maxWidth: 1280, margin: '0 auto', padding: '0 24px' }}>
         <img
           src="/start-building.png"
           alt="Stop searching. Start building."

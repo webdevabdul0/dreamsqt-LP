@@ -17,7 +17,7 @@ export const FounderSection: React.FC<FounderSectionProps> = ({ onExplorePortal 
         {/* Top: Founder image + text */}
         <div className="flex flex-col lg:flex-row gap-16 items-start">
           {/* Left: Founder image */}
-          <div className="rounded-2xl overflow-hidden shrink-0" style={{ width: '579px', aspectRatio: '4/5' }}>
+          <div data-animate-img className="rounded-2xl overflow-hidden shrink-0" style={{ width: '579px', aspectRatio: '4/5' }}>
             <img
               src="/founder.png"
               alt="Saba Arif - Founder Dream Squat"
@@ -26,7 +26,7 @@ export const FounderSection: React.FC<FounderSectionProps> = ({ onExplorePortal 
           </div>
 
           {/* Right: Text */}
-          <div className="space-y-6 pt-2">
+          <div data-animate-stagger className="space-y-6 pt-2">
             <GradientPill>BUILT FROM EXPERIENCE</GradientPill>
 
             <h2
@@ -69,7 +69,7 @@ export const FounderSection: React.FC<FounderSectionProps> = ({ onExplorePortal 
         </div>
 
         {/* Bottom: 4 image cards */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+        <div data-animate-stagger className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
           {/* Card 1: Dental interior + caption */}
           <div
             className="relative rounded-2xl overflow-hidden cursor-pointer"

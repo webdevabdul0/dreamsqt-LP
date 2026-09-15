@@ -175,6 +175,7 @@ export const PricingSection: React.FC<PricingSectionProps> = ({ onJoinClick }) =
 
             {/* Right: half-visible portal preview + glow */}
             <div
+              data-animate-img
               className="relative shrink-0 overflow-hidden"
               style={{ width: '440px' }}
             >

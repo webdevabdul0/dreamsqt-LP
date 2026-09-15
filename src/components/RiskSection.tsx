@@ -50,7 +50,7 @@ export const RiskSection: React.FC = () => {
         </div>
 
         {/* 3 Risk Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
+        <div data-animate-stagger className="grid grid-cols-1 md:grid-cols-3 gap-10">
           {risks.map(({ stat, desc }) => (
             <div
               key={stat}
