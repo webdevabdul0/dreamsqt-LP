@@ -35,11 +35,10 @@ export const RiskSection: React.FC = () => {
 
           {/* Heading */}
           <h2
-           
             className="text-center leading-tight"
             style={{
               fontFamily: SF_PRO,
-              fontSize: '60px',
+              fontSize: 'clamp(32px, 5.5vw, 60px)',
               fontWeight: 700,
               color: '#131313',
             }}

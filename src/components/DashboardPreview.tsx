@@ -72,7 +72,7 @@ export const DashboardPreview: React.FC<DashboardPreviewProps> = ({
             className="leading-tight"
             style={{
               fontFamily: '"SF Pro Display", "SF Pro", -apple-system, BlinkMacSystemFont, sans-serif',
-              fontSize: '60px',
+              fontSize: 'clamp(32px, 5.5vw, 60px)',
               fontWeight: 700,
               color: '#fff',
             }}
@@ -83,7 +83,7 @@ export const DashboardPreview: React.FC<DashboardPreviewProps> = ({
         </div>
 
         {/* Dashboard Image */}
-        <div className="relative max-w-5xl mx-auto" style={{ transform: 'translateX(-20px)' }}>
+        <div className="relative max-w-5xl mx-auto sm:translate-x-[-20px]">
           {/* Glow */}
           <div className="absolute pointer-events-none" style={{
             top: '-60px',

@@ -17,7 +17,7 @@ export const FounderSection: React.FC<FounderSectionProps> = ({ onExplorePortal 
         {/* Top: Founder image + text */}
         <div className="flex flex-col lg:flex-row gap-16 items-start">
           {/* Left: Founder image */}
-          <div data-animate-img className="rounded-2xl overflow-hidden shrink-0" style={{ width: '579px', aspectRatio: '4/5' }}>
+          <div data-animate-img className="rounded-2xl overflow-hidden shrink-0 w-full lg:w-[579px]" style={{ aspectRatio: '4/5' }}>
             <img
               src="/founder.png"
               alt="Saba Arif - Founder Dream Squat"
@@ -33,7 +33,7 @@ export const FounderSection: React.FC<FounderSectionProps> = ({ onExplorePortal 
               className="leading-tight"
               style={{
                 fontFamily: '"SF Pro Display", "SF Pro", -apple-system, BlinkMacSystemFont, sans-serif',
-                fontSize: '60px',
+                fontSize: 'clamp(32px, 5.5vw, 60px)',
                 fontWeight: 700,
                 color: '#131313',
               }}

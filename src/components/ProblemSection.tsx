@@ -31,7 +31,7 @@ export const ProblemSection: React.FC = () => {
               </div>
               <h2
                 className="leading-tight"
-                style={{ fontFamily: '"SF Pro Display", "SF Pro", -apple-system, BlinkMacSystemFont, sans-serif', fontSize: '60px', fontWeight: 700, color: '#131313' }}
+                style={{ fontFamily: '"SF Pro Display", "SF Pro", -apple-system, BlinkMacSystemFont, sans-serif', fontSize: 'clamp(32px, 5.5vw, 60px)', fontWeight: 700, color: '#131313' }}
               >
                 Going squat shouldn't<br />feel this <span style={{ color: '#C58F28' }}>complicated.</span>
               </h2>
@@ -78,10 +78,10 @@ export const ProblemSection: React.FC = () => {
               background: 'linear-gradient(90deg, #925E02 -9.6%, #C5A13B 48.65%, #E6CC60 93.96%, #F2DC6E 115.53%, #ECD465 130.63%, #DDBD4E 152.2%, #C49727 182.41%, #B07908 201.82%)',
             }}
           >
-            {/* Arrow at bottom-left corner */}
-            <img src="/arrow.svg" alt="" width={160} height={110} className="absolute -bottom-12 -left-32 pointer-events-none" />
+            {/* Arrow at bottom-left corner — hidden on mobile */}
+            <img src="/arrow.svg" alt="" width={160} height={110} className="hidden md:block absolute -bottom-12 -left-32 pointer-events-none" />
 
-            <h3 className="leading-tight text-white" style={{ fontFamily: '"SF Pro Display", "SF Pro", -apple-system, BlinkMacSystemFont, sans-serif', fontSize: '40px', fontWeight: 700 }}>
+            <h3 className="leading-tight text-white" style={{ fontFamily: '"SF Pro Display", "SF Pro", -apple-system, BlinkMacSystemFont, sans-serif', fontSize: 'clamp(26px, 4vw, 40px)', fontWeight: 700 }}>
               You're a brilliant clinician being asked to become a business owner overnight.
             </h3>
 

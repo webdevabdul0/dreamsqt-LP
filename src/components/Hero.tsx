@@ -20,12 +20,12 @@ export const Hero: React.FC<HeroProps> = ({ onJoinClick }) => {
 
           <h1 data-hero-item
             className="leading-tight"
-            style={{ fontFamily: '"SF Pro Display", "SF Pro", -apple-system, BlinkMacSystemFont, sans-serif', fontSize: '60px', fontWeight: 700, color: '#131313' }}
+            style={{ fontFamily: '"SF Pro Display", "SF Pro", -apple-system, BlinkMacSystemFont, sans-serif', fontSize: 'clamp(32px, 5.5vw, 60px)', fontWeight: 700, color: '#131313' }}
           >
             <span style={{ color: '#C58F28' }}>Everything</span> you need to open your squat dental practice.
           </h1>
 
-          <p data-hero-item style={{ color: '#131313', fontSize: '24px', fontWeight: 400 }}>
+          <p data-hero-item style={{ color: '#131313', fontSize: 'clamp(18px, 2.5vw, 24px)', fontWeight: 400 }}>
             One place. One price. No guesswork.
           </p>
 

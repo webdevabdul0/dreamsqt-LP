@@ -4,11 +4,11 @@ const sfPro = '"SF Pro Display", "SF Pro", -apple-system, BlinkMacSystemFont, sa
 
 export const StopSearching: React.FC = () => {
   return (
-    <section style={{ background: '#131313', padding: '80px 0 80px' }}>
+    <section style={{ background: '#131313', padding: '80px 24px' }}>
       <div data-animate-stagger style={{ textAlign: 'center', marginBottom: 48 }}>
         <h2 data-animate-heading style={{
           fontFamily: sfPro,
-          fontSize: 60,
+          fontSize: 'clamp(32px, 5.5vw, 60px)',
           fontWeight: 700,
           color: '#ffffff',
           lineHeight: 1.15,

@@ -13,10 +13,10 @@ export const TopBar: React.FC<TopBarProps> = ({ onContactClick }) => {
       data-purpose="top-utility-bar"
     >
       <div className="max-w-7xl mx-auto flex justify-between items-center">
-        {/* Contact Info */}
-        <div className="flex items-center gap-6">
+        {/* Contact Info — hidden on mobile, visible md+ */}
+        <div className="hidden md:flex items-center gap-6">
           <a
-            href="mailto:cqcmedisolutions@gmail.com"
+            href="mailto:dreamsquatpractice@gmail.com"
             className="flex items-center gap-2 text-[#C58F28] hover:text-[#DFB04E] transition-colors cursor-pointer"
           >
             {/* Mail icon SVG matching Figma */}
@@ -24,7 +24,7 @@ export const TopBar: React.FC<TopBarProps> = ({ onContactClick }) => {
               <rect x="1" y="2.5" width="12" height="9" rx="1.5" stroke="#C58F28" strokeWidth="1.2"/>
               <path d="M1 4L7 8L13 4" stroke="#C58F28" strokeWidth="1.2" strokeLinecap="round"/>
             </svg>
-            <span>Email: cqcmedisolutions@gmail.com</span>
+            <span>Email: dreamsquatpractice@gmail.com</span>
           </a>
 
           <a

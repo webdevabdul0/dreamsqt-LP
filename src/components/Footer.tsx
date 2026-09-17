@@ -81,10 +81,10 @@ export const Footer: React.FC<FooterProps> = ({
         </div>
 
         {/* ── Right cream card ── */}
-        <div className="flex-1 rounded-[40px] bg-[#fff0d1] px-8 lg:px-12 pt-10 pb-8 relative overflow-visible">
+        <div className="flex-1 rounded-[40px] bg-[#fff0d1] px-8 lg:px-12 pt-10 pb-8 relative overflow-hidden lg:overflow-visible">
           {/* Floating rotated badge */}
           <div
-            className="absolute -top-9 right-[46px] lg:right-[62px] w-[120px] h-[120px] lg:w-[140px] lg:h-[140px] flex items-center justify-center"
+            className="hidden lg:flex absolute -top-9 right-[62px] w-[140px] h-[140px] items-center justify-center"
             style={{
               background: 'linear-gradient(180deg, #131313 0%, #4B4B4B 100%)',
               borderRadius: '30px',

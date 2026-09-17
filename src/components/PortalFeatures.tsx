@@ -244,7 +244,7 @@ export const PortalFeatures: React.FC<PortalFeaturesProps> = ({
             className="leading-tight"
             style={{
               fontFamily: '"SF Pro Display", "SF Pro", -apple-system, BlinkMacSystemFont, sans-serif',
-              fontSize: '60px',
+              fontSize: 'clamp(32px, 5.5vw, 60px)',
               fontWeight: 700,
               color: '#131313',
             }}
@@ -280,15 +280,15 @@ export const PortalFeatures: React.FC<PortalFeaturesProps> = ({
         </div>
 
         {/* Sliding tab content */}
-        <div style={{ position: 'relative', overflow: 'hidden', height: '620px' }}>
-          {/* Exiting card */}
+        <div className="relative overflow-hidden lg:h-[620px]">
+          {/* Exiting card — hidden on mobile (no slide-out animation on small screens) */}
           {exitingTab && (
-            <div ref={exitingRef} style={{ position: 'absolute', inset: 0, width: '100%' }}>
+            <div ref={exitingRef} className="hidden lg:block absolute inset-0 w-full">
               {renderTabCard(exitingTab)}
             </div>
           )}
-          {/* Entering / current card */}
-          <div ref={enteringRef} style={{ position: 'absolute', inset: 0, width: '100%' }}>
+          {/* Entering / current card — flows naturally on mobile, absolute on lg */}
+          <div ref={enteringRef} className="w-full lg:absolute lg:inset-0">
             {renderTabCard(displayTab)}
           </div>
         </div>

@@ -64,7 +64,7 @@ export default function App() {
         onOpenResources={() => setActiveModal('resources')}
         onOpenBlogs={() => setActiveModal('blogs')}
         onOpenContact={() => setActiveModal('contact')}
-        onOpenLogin={() => setActiveModal('login')}
+        onOpenLogin={() => window.open('https://app.dreamsquats.co.uk', '_blank')}
         onScrollToPortal={scrollToPortal}
       />
 
@@ -72,7 +72,7 @@ export default function App() {
       <main className="flex-1">
         {/* 3. Hero */}
         <div data-hero>
-          <Hero onJoinClick={scrollToPricing} />
+          <Hero onJoinClick={() => window.open('https://app.dreamsquats.co.uk', '_blank')} />
         </div>
 
         {/* 4. Problem */}
@@ -90,7 +90,7 @@ export default function App() {
 
         {/* 6. Founder */}
         <div data-animate>
-          <FounderSection onExplorePortal={scrollToPortal} />
+          <FounderSection onExplorePortal={() => window.open('https://app.dreamsquats.co.uk', '_blank')} />
         </div>
 
         {/* 7. Portal Features */}
@@ -103,7 +103,7 @@ export default function App() {
 
         {/* 8. Pricing */}
         <div data-animate>
-          <PricingSection onJoinClick={() => setActiveModal('login')} />
+          <PricingSection onJoinClick={() => window.open('https://app.dreamsquats.co.uk', '_blank')} />
         </div>
 
         {/* 9. Risk */}
@@ -113,7 +113,7 @@ export default function App() {
 
         {/* 10. Banner CTA */}
         <div data-animate>
-          <BannerCTA onJoinClick={() => setActiveModal('login')} />
+          <BannerCTA onJoinClick={() => window.open('https://app.dreamsquats.co.uk', '_blank')} />
         </div>
 
         {/* 11. Stop Searching */}

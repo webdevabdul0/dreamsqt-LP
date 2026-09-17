@@ -21,11 +21,11 @@ export const FeatureTabCard: React.FC<FeatureTabCardProps> = ({
   imageAlt,
   cardBg = '#7B5214',
 }) => (
-  <div className="flex gap-5 w-full" style={{ height: '620px' }}>
+  <div className="flex flex-col lg:flex-row gap-5 w-full">
     {/* Left panel */}
     <div
-      className="flex flex-col p-10 shrink-0 overflow-hidden"
-      style={{ flex: '0 0 41%', background: cardBg, borderRadius: '40px' }}
+      className="flex flex-col p-8 lg:p-10 shrink-0 overflow-hidden w-full lg:w-[41%]"
+      style={{ background: cardBg, borderRadius: '40px' }}
     >
       <div className="space-y-6">
         {/* Pill */}
@@ -39,7 +39,7 @@ export const FeatureTabCard: React.FC<FeatureTabCardProps> = ({
         {/* Heading */}
         <h3
           className="leading-tight text-white"
-          style={{ fontFamily: SF_PRO, fontSize: '42px', fontWeight: 700 }}
+          style={{ fontFamily: SF_PRO, fontSize: 'clamp(26px, 4vw, 42px)', fontWeight: 700 }}
         >
           {heading}
         </h3>
@@ -59,7 +59,7 @@ export const FeatureTabCard: React.FC<FeatureTabCardProps> = ({
     </div>
 
     {/* Right panel — photo */}
-    <div className="relative overflow-hidden" style={{ flex: '1 1 0', borderRadius: '40px' }}>
+    <div className="relative overflow-hidden flex-1" style={{ borderRadius: '40px', minHeight: '280px' }}>
       <img
         src={imageSrc}
         alt={imageAlt}

@@ -58,7 +58,7 @@ export const PricingSection: React.FC<PricingSectionProps> = ({ onJoinClick }) =
             className="leading-tight"
             style={{
               fontFamily: SF_PRO,
-              fontSize: '60px',
+              fontSize: 'clamp(32px, 5.5vw, 60px)',
               fontWeight: 700,
               color: '#131313',
             }}
@@ -70,9 +70,8 @@ export const PricingSection: React.FC<PricingSectionProps> = ({ onJoinClick }) =
 
         {/* Pricing Card */}
         <div
-          className="mx-auto relative overflow-hidden"
+          className="mx-auto relative overflow-hidden border-[8px] lg:border-[14px] border-[#DFA123]"
           style={{
-            border: '14px solid #DFA123',
             borderRadius: '32px',
             background: '#121212',
             maxWidth: '1000px',
@@ -92,7 +91,7 @@ export const PricingSection: React.FC<PricingSectionProps> = ({ onJoinClick }) =
               zIndex: 0,
             }}
           />
-          <div className="flex items-stretch" style={{ position: 'relative', zIndex: 1 }}>
+          <div className="flex flex-col lg:flex-row items-stretch" style={{ position: 'relative', zIndex: 1 }}>
             {/* Left: Pricing Info */}
             <div className="flex-1 p-10 space-y-7 min-w-0">
               {/* Price label */}
@@ -173,10 +172,10 @@ export const PricingSection: React.FC<PricingSectionProps> = ({ onJoinClick }) =
               </div>
             </div>
 
-            {/* Right: half-visible portal preview + glow */}
+            {/* Right: half-visible portal preview + glow — hidden on mobile */}
             <div
               data-animate-img
-              className="relative shrink-0 overflow-hidden"
+              className="hidden lg:block relative shrink-0 overflow-hidden"
               style={{ width: '440px' }}
             >
 {/* Image — anchored left, wider than container so right clips off */}

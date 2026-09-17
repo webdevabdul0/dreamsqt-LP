@@ -92,11 +92,28 @@ export const Header: React.FC<HeaderProps> = ({
             Login
           </button>
 
-          {/* Mobile menu button — hidden */}
+          {/* Mobile menu button */}
+          <button
+            className="md:hidden p-2 rounded-md text-[#131313] hover:bg-black/5 transition-colors cursor-pointer"
+            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            aria-label="Toggle menu"
+          >
+            {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+          </button>
         </div>
       </div>
 
-      {/* Mobile dropdown — hidden */}
+      {/* Mobile dropdown */}
+      {mobileMenuOpen && (
+        <nav className="md:hidden border-t border-black/5 bg-[#FAF7F2] px-6 py-4 flex flex-col gap-1">
+          <button onClick={() => { onScrollToPortal(); setMobileMenuOpen(false); }} className="text-[#C58F28] font-semibold text-sm py-3 text-left hover:opacity-70 transition-opacity cursor-pointer border-b border-black/5">DS Portal</button>
+          <button onClick={() => { onOpenCalculator(); setMobileMenuOpen(false); }} className="text-[#131313] text-sm py-3 text-left hover:opacity-70 transition-opacity cursor-pointer border-b border-black/5">Comparison Calculator</button>
+          <button onClick={() => { onOpenEvent(); setMobileMenuOpen(false); }} className="text-[#131313] text-sm py-3 text-left hover:opacity-70 transition-opacity cursor-pointer border-b border-black/5">Event</button>
+          <button onClick={() => { onOpenResources(); setMobileMenuOpen(false); }} className="text-[#131313] text-sm py-3 text-left hover:opacity-70 transition-opacity cursor-pointer border-b border-black/5">Free Resources</button>
+          <button onClick={() => { onOpenBlogs(); setMobileMenuOpen(false); }} className="text-[#131313] text-sm py-3 text-left hover:opacity-70 transition-opacity cursor-pointer border-b border-black/5">Blogs</button>
+          <button onClick={() => { onOpenContact(); setMobileMenuOpen(false); }} className="text-[#131313] text-sm py-3 text-left hover:opacity-70 transition-opacity cursor-pointer">Contact Us</button>
+        </nav>
+      )}
     </header>
   );
 };
